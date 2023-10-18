@@ -12,13 +12,13 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class InitialUiTest {
+class Task001Test {
 
     @get:Rule
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun test_hello_world() {
-        onView(withText("Hello World!")).check(matches(isDisplayed()))
+    fun test_change_text() {
+        onView(withText("I am an Android Developer!")).check(matches(isDisplayed()))
     }
 }
