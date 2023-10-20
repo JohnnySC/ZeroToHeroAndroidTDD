@@ -7,3 +7,5 @@ Then just checkout branches, solve the tasks, run ui tests and unit tests to che
 
 task/001-change-text solution on YouTube https://www.youtube.com/watch?v=EK2G_XV25YQ
 
+task/002-add-id solution on YouTube https://www.youtube.com/watch?v=TrSa83OsYV8
+
