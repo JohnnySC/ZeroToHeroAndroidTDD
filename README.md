@@ -9,3 +9,4 @@ task/001-change-text solution on YouTube https://www.youtube.com/watch?v=EK2G_XV
 
 task/002-add-id solution on YouTube https://www.youtube.com/watch?v=TrSa83OsYV8
 
+task/003-change-parent solution on YouTube https://www.youtube.com/watch?v=4N-59HERAq0
