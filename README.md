@@ -14,3 +14,5 @@ task/003-change-parent solution on YouTube https://www.youtube.com/watch?v=4N-59
 task/004-add-button solution on YouTube https://www.youtube.com/watch?v=mFzelplwHKs
 
 task/005-button-position solution on YouTube https://www.youtube.com/watch?v=Aqey3TvWJxk
+
+task/006-change-text-runtime solution on YouTube https://www.youtube.com/watch?v=80vHNKpcOZA
