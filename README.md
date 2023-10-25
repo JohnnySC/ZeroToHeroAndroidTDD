@@ -16,3 +16,5 @@ task/004-add-button solution on YouTube https://www.youtube.com/watch?v=mFzelplw
 task/005-button-position solution on YouTube https://www.youtube.com/watch?v=Aqey3TvWJxk
 
 task/006-change-text-runtime solution on YouTube https://www.youtube.com/watch?v=80vHNKpcOZA
+
+task/007-keep-text solution on YouTube https://www.youtube.com/watch?v=15RtLNLbnUk
