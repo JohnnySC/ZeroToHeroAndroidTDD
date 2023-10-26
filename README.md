@@ -18,3 +18,5 @@ task/005-button-position solution on YouTube https://www.youtube.com/watch?v=Aqe
 task/006-change-text-runtime solution on YouTube https://www.youtube.com/watch?v=80vHNKpcOZA
 
 task/007-keep-text solution on YouTube https://www.youtube.com/watch?v=15RtLNLbnUk
+
+task/008-hide-text solution on YouTube https://www.youtube.com/watch?v=c1Mh6J2FwTY
