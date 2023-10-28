@@ -22,3 +22,5 @@ task/007-keep-text solution on YouTube https://www.youtube.com/watch?v=15RtLNLbn
 task/008-hide-text solution on YouTube https://www.youtube.com/watch?v=c1Mh6J2FwTY
 
 task/009-remove-textview solution on YouTube https://youtu.be/vGG9AjW0pFU
+
+task/010-disable-button solution on YouTube https://www.youtube.com/watch?v=IzZ2_3njzx0
