@@ -71,7 +71,7 @@ private interface FakeRepository : Repository {
 
     class Base : FakeRepository {
 
-        var actualCalledTimes: Int = 0
+        private var actualCalledTimes: Int = 0
 
         override fun checkLoadCalledTimes(times: Int) {
             assertEquals(times, actualCalledTimes)
