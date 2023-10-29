@@ -24,6 +24,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Please also check out the unit test
+ * @see ru.easycode.zerotoheroandroidtdd.MainViewModelTest
+ */
 @RunWith(AndroidJUnit4::class)
 class Task015Test {
 
