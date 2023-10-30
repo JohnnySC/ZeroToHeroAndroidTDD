@@ -26,3 +26,5 @@ task/009-remove-textview solution on YouTube https://youtu.be/vGG9AjW0pFU
 task/010-disable-button solution on YouTube https://www.youtube.com/watch?v=IzZ2_3njzx0
 
 task/011-increment solution on YouTube https://www.youtube.com/watch?v=OWrgyy0m3t4
+
+task/012-increment-max solution on YouTube https://youtu.be/H-QDGKEo_js
