@@ -28,3 +28,6 @@ task/010-disable-button solution on YouTube https://www.youtube.com/watch?v=IzZ2
 task/011-increment solution on YouTube https://www.youtube.com/watch?v=OWrgyy0m3t4
 
 task/012-increment-max solution on YouTube https://youtu.be/H-QDGKEo_js
+
+task/013-min-max solution on YouTube https://www.youtube.com/watch?v=wik_LmCwn7I
+
