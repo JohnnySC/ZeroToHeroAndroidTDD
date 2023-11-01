@@ -31,3 +31,6 @@ task/012-increment-max solution on YouTube https://youtu.be/H-QDGKEo_js
 
 task/013-min-max solution on YouTube https://www.youtube.com/watch?v=wik_LmCwn7I
 
+task/014-progress solution on YouTube https://www.youtube.com/watch?v=KqXu5IE7kkU
+
+
