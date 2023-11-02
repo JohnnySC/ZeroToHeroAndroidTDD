@@ -35,7 +35,7 @@ class Task017Test {
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun test_progress_mvvm_recreate() {
+    fun test_mvvm_process_recreate() {
         onView(
             allOf(
                 withParent(isAssignableFrom(LinearLayout::class.java)),
