@@ -75,6 +75,7 @@ class Task018Test {
 
         activityScenarioRule.scenario.recreate()
         onView(withId(R.id.titleTextView)).check(matches(isDisplayed()))
+        onView(withId(R.id.titleTextView)).check(matches(withText("Hello World From Web!")))
         onView(withId(R.id.progressBar)).check(matches(not(isDisplayed())))
         onView(withId(R.id.actionButton)).check(matches(isEnabled()))
     }
