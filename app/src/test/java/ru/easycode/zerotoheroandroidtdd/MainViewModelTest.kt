@@ -21,6 +21,7 @@ class MainViewModelTest {
     @Before
     fun setup() {
         Dispatchers.setMain(UnconfinedTestDispatcher())
+        initialize()
     }
 
     @OptIn(ExperimentalCoroutinesApi::class)
@@ -33,7 +34,6 @@ class MainViewModelTest {
     private lateinit var liveDataWrapper: FakeLiveDataWrapper
     private lateinit var viewModel: MainViewModel
 
-    @Before
     fun initialize() {
         repository = FakeRepository.Base()
         liveDataWrapper = FakeLiveDataWrapper.Base()
