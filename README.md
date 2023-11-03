@@ -34,3 +34,6 @@ task/013-min-max solution on YouTube https://www.youtube.com/watch?v=wik_LmCwn7I
 task/014-progress solution on YouTube https://www.youtube.com/watch?v=KqXu5IE7kkU
 
 task/015-progress-mvvm solution on YouTube https://youtu.be/Jr1bFjhtMio
+
+task/016-progress-mvvm-recreate solution on YouTube https://www.youtube.com/watch?v=OzN2ygeUQes
+
