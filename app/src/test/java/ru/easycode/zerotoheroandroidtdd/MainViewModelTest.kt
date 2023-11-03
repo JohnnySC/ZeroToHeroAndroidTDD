@@ -49,7 +49,7 @@ class MainViewModelTest {
 
     @Test
     fun test() {
-        repository.expectResponse(SimpleResponse("testingText"))
+        repository.expectResponse(SimpleResponse(text = "testingText"))
 
         viewModel.load()
         liveDataWrapper.checkUpdateCalls(

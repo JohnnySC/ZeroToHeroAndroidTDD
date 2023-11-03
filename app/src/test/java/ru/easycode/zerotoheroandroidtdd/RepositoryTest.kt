@@ -11,7 +11,7 @@ class RepositoryTest {
         val service = FakeService.Base()
         val repository = Repository.Base(service = service, url = "a")
         val actual = repository.load()
-        val expected = SimpleResponse("A")
+        val expected = SimpleResponse(text = "A")
         assertEquals(expected, actual)
     }
 }
@@ -23,8 +23,8 @@ private interface FakeService : SimpleService {
         private val map = mutableMapOf<String, SimpleResponse>()
 
         init {
-            map["a"] = SimpleResponse("A")
-            map["b"] = SimpleResponse("B")
+            map["a"] = SimpleResponse(text = "A")
+            map["b"] = SimpleResponse(text = "B")
         }
 
         override suspend fun fetch(url: String): SimpleResponse {

@@ -19,7 +19,7 @@ class ServiceTest {
             .build()
         val service: SimpleService = retrofit.create(SimpleService::class.java)
         val actual =
-            service.fetch("https://raw.githubusercontent.com/JohnnySC/ZeroToHeroAndroidTDD/task/018-clouddatasource/app/sampleresponse.json")
+            service.fetch(url = "https://raw.githubusercontent.com/JohnnySC/ZeroToHeroAndroidTDD/task/018-clouddatasource/app/sampleresponse.json")
         val expected = SimpleResponse(text = "Hello World From Web!")
         assertEquals(expected, actual)
     }
