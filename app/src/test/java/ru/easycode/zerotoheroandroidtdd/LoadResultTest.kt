@@ -8,7 +8,8 @@ class LoadResultTest {
     fun test_no_connection() {
         val result = LoadResult.Error(noConnection = true)
         val liveDataWrapper = FakeLiveDataWrapper.Base()
-        result.show(liveDataWrapper)
+        val liveDataWrapperUpdate: LiveDataWrapper.Update = liveDataWrapper
+        result.show(updateLiveData = liveDataWrapperUpdate)
         liveDataWrapper.checkUpdateCalls(listOf(UiState.ShowData(text = "No internet connection")))
     }
 
@@ -16,7 +17,8 @@ class LoadResultTest {
     fun test_other() {
         val result = LoadResult.Error(noConnection = false)
         val liveDataWrapper = FakeLiveDataWrapper.Base()
-        result.show(liveDataWrapper)
+        val liveDataWrapperUpdate: LiveDataWrapper.Update = liveDataWrapper
+        result.show(updateLiveData = liveDataWrapperUpdate)
         liveDataWrapper.checkUpdateCalls(listOf(UiState.ShowData(text = "Something went wrong")))
     }
 }

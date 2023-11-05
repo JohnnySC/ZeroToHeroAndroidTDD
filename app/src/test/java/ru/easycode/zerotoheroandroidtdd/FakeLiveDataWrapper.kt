@@ -1,9 +1,9 @@
 package ru.easycode.zerotoheroandroidtdd
 
 import androidx.lifecycle.LiveData
-import org.junit.Assert
+import org.junit.Assert.assertEquals
 
- interface FakeLiveDataWrapper : LiveDataWrapper.Mutable {
+interface FakeLiveDataWrapper : LiveDataWrapper.Mutable {
 
     fun checkUpdateCalls(expected: List<UiState>)
 
@@ -12,7 +12,7 @@ import org.junit.Assert
         private val actualCallsList = mutableListOf<UiState>()
 
         override fun checkUpdateCalls(expected: List<UiState>) {
-            Assert.assertEquals(expected, actualCallsList)
+            assertEquals(expected, actualCallsList)
         }
 
         override fun save(bundleWrapper: BundleWrapper.Save) {
