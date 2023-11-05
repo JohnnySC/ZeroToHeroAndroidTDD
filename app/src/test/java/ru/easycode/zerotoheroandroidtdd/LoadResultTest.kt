@@ -5,6 +5,15 @@ import org.junit.Test
 class LoadResultTest {
 
     @Test
+    fun test_success() {
+        val result = LoadResult.Success(data = SimpleResponse(text = "some text here"))
+        val liveDataWrapper = FakeLiveDataWrapper.Base()
+        val liveDataWrapperUpdate: LiveDataWrapper.Update = liveDataWrapper
+        result.show(updateLiveData = liveDataWrapperUpdate)
+        liveDataWrapper.checkUpdateCalls(listOf(UiState.ShowData(text = "some text here")))
+    }
+
+    @Test
     fun test_no_connection() {
         val result = LoadResult.Error(noConnection = true)
         val liveDataWrapper = FakeLiveDataWrapper.Base()
