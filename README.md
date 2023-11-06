@@ -41,3 +41,5 @@ task/017-mvvm-process-recrerate solution on YouTube https://www.youtube.com/watc
 
 task/018-clouddatasource soluton on YouTube https://youtu.be/0ru42NoOF8o
 
+task/019-no-connection soluton on YouTube https://youtu.be/DItO3AnD8pI
+
