@@ -45,6 +45,7 @@ class Task005Test {
                 withParent(isAssignableFrom(LinearLayout::class.java)),
                 withParent(withId(R.id.rootLayout))
             )
-        ).check(isCompletelyBelow(withId(R.id.titleTextView)))
+        ).check(isCompletelyBelow(withId(R.id.titleTextView
+         )))
     }
 }
