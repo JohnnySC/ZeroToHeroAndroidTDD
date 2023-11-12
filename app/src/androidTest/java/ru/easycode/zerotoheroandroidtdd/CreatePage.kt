@@ -16,6 +16,14 @@ import org.hamcrest.Matchers.allOf
 
 class CreatePage : AbstractPage(R.id.createFrameLayout) {
 
+    private val createButton = onView(
+        allOf(
+            isAssignableFrom(Button::class.java),
+            withParent(withId(root)),
+            withId(R.id.createButton)
+        )
+    )
+
     fun inputText(text: String) {
         onView(
             allOf(
@@ -27,20 +35,14 @@ class CreatePage : AbstractPage(R.id.createFrameLayout) {
     }
 
     fun clickCreateButton() {
-        onView(
-            allOf(
-                isAssignableFrom(Button::class.java),
-                withParent(withId(root)),
-                withId(R.id.createButton)
-            )
-        ).perform(click())
+        createButton.perform(click())
     }
 
     fun checkButtonEnabled() {
-        onView(withId(R.id.createButton)).check(matches(isEnabled()))
+        createButton.check(matches(isEnabled()))
     }
 
     fun checkButtonNotEnabled() {
-        onView(withId(R.id.createButton)).check(matches(isNotEnabled()))
+        createButton.check(matches(isNotEnabled()))
     }
 }
