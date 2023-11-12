@@ -11,6 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.isEnabled
 import androidx.test.espresso.matcher.ViewMatchers.isNotEnabled
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.espresso.matcher.ViewMatchers.withParent
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.google.android.material.textfield.TextInputEditText
 import org.hamcrest.Matchers.allOf
 
@@ -20,7 +21,8 @@ class CreatePage : AbstractPage(R.id.createFrameLayout) {
         allOf(
             isAssignableFrom(Button::class.java),
             withParent(withId(root)),
-            withId(R.id.createButton)
+            withId(R.id.createButton),
+            withText("create")
         )
     )
 

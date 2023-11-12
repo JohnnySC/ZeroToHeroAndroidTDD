@@ -2,7 +2,6 @@ package ru.easycode.zerotoheroandroidtdd.list
 
 import org.junit.Before
 import org.junit.Test
-import ru.easycode.zerotoheroandroidtdd.core.BundleWrapper
 import ru.easycode.zerotoheroandroidtdd.create.CreateScreen
 import ru.easycode.zerotoheroandroidtdd.main.FakeNavigation
 import ru.easycode.zerotoheroandroidtdd.main.Navigation
