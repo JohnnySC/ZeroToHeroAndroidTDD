@@ -6,6 +6,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/rootLayout"
     tools:context=".MainActivity">
 
 
@@ -25,7 +27,8 @@
         android:text="@string/change"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/change"/>
 
 </LinearLayout>
