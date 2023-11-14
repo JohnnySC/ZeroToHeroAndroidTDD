@@ -51,3 +51,5 @@ task/020-input soluton on YouTube https://youtu.be/7rRF6WB6Q5w
 
 task/021-watch-input soluton on YouTube https://youtu.be/nCjJ-oUWFj8
 
+task/022-list soluton on YouTube https://youtu.be/IY4_LycCNvY
+
