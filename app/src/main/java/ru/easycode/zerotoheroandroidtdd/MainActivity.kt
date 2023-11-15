@@ -1,8 +1,10 @@
 package ru.easycode.zerotoheroandroidtdd
 
-import android.annotation.SuppressLint
+import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.PersistableBundle
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 
@@ -10,35 +12,27 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var textView: TextView
 
-    @SuppressLint("MissingInflatedId", "SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         textView = findViewById(R.id.titleTextView)
-        val changeButton = findViewById<Button>(R.id.changeButton)
+        val button = findViewById<Button>(R.id.hideButton)
 
-        if(savedInstanceState != null) {
-            textView.text = savedInstanceState.getString(KEY_STRING)
+        textView.visibility = savedInstanceState.let {
+            it?.getInt("key") ?: View.VISIBLE
         }
 
-        changeButton.setOnClickListener {
-            textView.text = "I am an Android Developer!"
+        button.setOnClickListener {
+            textView.visibility = View.INVISIBLE
         }
-    }
+
+
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(KEY_STRING, textView.text.toString())
+        outState.putInt("key", View.INVISIBLE )
     }
 
-//    override fun onRestoreInstanceState(
-//        savedInstanceState: Bundle
-//    ) {
-//        super.onRestoreInstanceState(savedInstanceState)
-//        textView.text = savedInstanceState.getString("key")
-//    }
 
-    companion object {
-        private const val KEY_STRING = "key"
-    }
 }
