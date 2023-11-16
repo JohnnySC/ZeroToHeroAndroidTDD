@@ -8,7 +8,7 @@ import org.junit.Test
 class AddViewModelTest {
 
     @Test
-    fun test() {
+    fun test_add() {
         val order = Order()
         val repository = FakeAddRepository.Base(order)
         val liveDataWrapper = FakeAddLiveDataWrapper.Base(order)
@@ -28,6 +28,27 @@ class AddViewModelTest {
         clear.checkClearCalled(AddViewModel::class.java)
 
         order.checkCallsList(listOf(REPOSITORY_ADD, LIVEDATA_ADD, CLEAR))
+    }
+
+    @Test
+    fun test_comeback() {
+        val order = Order()
+        val repository = FakeAddRepository.Base(order)
+        val liveDataWrapper = FakeAddLiveDataWrapper.Base(order)
+        val clear = FakeClearViewModel.Base(order)
+        val viewModel =
+            AddViewModel(
+                repository = repository,
+                liveDataWrapper = liveDataWrapper,
+                clear = clear,
+                dispatcher = Dispatchers.Unconfined
+            )
+
+        viewModel.comeback()
+
+        clear.checkClearCalled(AddViewModel::class.java)
+
+        order.checkCallsList(listOf(CLEAR))
     }
 }
 
