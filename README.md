@@ -54,3 +54,6 @@ task/021-watch-input soluton on YouTube https://youtu.be/nCjJ-oUWFj8
 task/022-list soluton on YouTube https://youtu.be/IY4_LycCNvY
 
 task/023-recycler soluton on YouTube https://youtu.be/0QOackU05SQ
+
+task/024-mvvm-recycler soluton on YouTube https://youtu.be/rva0YlnzsK4
+
