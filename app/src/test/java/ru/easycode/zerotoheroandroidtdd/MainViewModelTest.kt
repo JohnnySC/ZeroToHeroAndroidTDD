@@ -13,7 +13,8 @@ class MainViewModelTest {
         val liveDataWrapper = FakeListLiveDataWrapper.Base()
         val viewModel = MainViewModel(
             repository = repository, liveDataWrapper = liveDataWrapper,
-            dispatcher = Dispatchers.Unconfined
+            dispatcher = Dispatchers.Unconfined,
+            dispatcherMain = Dispatchers.Unconfined
         )
 
         repository.expectList(listOf("1", "2"))

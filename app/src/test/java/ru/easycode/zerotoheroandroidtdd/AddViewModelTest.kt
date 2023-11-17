@@ -18,7 +18,8 @@ class AddViewModelTest {
                 repository = repository,
                 liveDataWrapper = liveDataWrapper,
                 clear = clear,
-                dispatcher = Dispatchers.Unconfined
+                dispatcher = Dispatchers.Unconfined,
+                dispatcherMain = Dispatchers.Unconfined
             )
 
         viewModel.add(value = "new text input")
@@ -41,7 +42,8 @@ class AddViewModelTest {
                 repository = repository,
                 liveDataWrapper = liveDataWrapper,
                 clear = clear,
-                dispatcher = Dispatchers.Unconfined
+                dispatcher = Dispatchers.Unconfined,
+                dispatcherMain = Dispatchers.Unconfined
             )
 
         viewModel.comeback()
