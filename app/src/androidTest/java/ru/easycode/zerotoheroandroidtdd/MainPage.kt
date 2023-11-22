@@ -20,4 +20,12 @@ class MainPage : AbstractPage(R.id.rootLayout) {
             )
         ).check(matches(withText(text)))
     }
+
+    fun clickItem(position: Int) {
+        onView(
+            RecyclerViewMatcher(R.id.recyclerView).atPosition(
+                position
+            )
+        ).perform(click())
+    }
 }

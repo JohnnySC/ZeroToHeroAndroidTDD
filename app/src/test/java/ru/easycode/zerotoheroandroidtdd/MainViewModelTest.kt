@@ -1,8 +1,6 @@
 package ru.easycode.zerotoheroandroidtdd
 
-import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
-import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class MainViewModelTest {
@@ -17,49 +15,32 @@ class MainViewModelTest {
             dispatcherMain = Dispatchers.Unconfined
         )
 
-        repository.expectList(listOf("1", "2"))
+        repository.expectList(listOf(Item(id = 0L, text = "1"), Item(id = 1L, text = "2")))
 
         viewModel.init()
 
-        liveDataWrapper.checkUpdateCallList(listOf("1", "2"))
-    }
-}
-
-private interface FakeListLiveDataWrapper : ListLiveDataWrapper.Mutable {
-
-    fun checkUpdateCallList(expected: List<String>)
-
-    class Base : FakeListLiveDataWrapper {
-
-        private val actual = mutableListOf<String>()
-
-        override fun checkUpdateCallList(expected: List<String>) {
-            assertEquals(expected, actual)
-        }
-
-        override fun update(value: List<String>) {
-            actual.addAll(value)
-        }
-
-        override fun liveData(): LiveData<List<String>> {
-            throw IllegalStateException("not used")
-        }
+        liveDataWrapper.checkUpdateCallList(
+            listOf(
+                ItemUi(id = 0L, text = "1"),
+                ItemUi(id = 1L, text = "2")
+            )
+        )
     }
 }
 
 private interface FakeRepository : Repository.Read {
 
-    fun expectList(list: List<String>)
+    fun expectList(list: List<Item>)
 
     class Base : FakeRepository {
 
-        private val list = mutableListOf<String>()
+        private val list = mutableListOf<Item>()
 
-        override fun expectList(list: List<String>) {
+        override fun expectList(list: List<Item>) {
             this.list.addAll(list)
         }
 
-        override fun list(): List<String> {
+        override fun list(): List<Item> {
             return list
         }
     }
