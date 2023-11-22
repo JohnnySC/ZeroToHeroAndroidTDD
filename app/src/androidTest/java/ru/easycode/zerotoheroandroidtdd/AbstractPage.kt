@@ -10,18 +10,19 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import org.hamcrest.Matchers.allOf
 
-abstract class AbstractPage(protected val root: Int) {
-
-    protected open fun rootClass(): Class<out ViewGroup> = LinearLayout::class.java
+abstract class AbstractPage(
+    protected val root: Int,
+    protected val rootClass: Class<out ViewGroup> = LinearLayout::class.java
+) {
 
     private val rootInteraction = onView(
         allOf(
-            isAssignableFrom(rootClass()),
+            isAssignableFrom(rootClass),
             withId(root)
         )
     )
 
-    fun checkVisibleNow() {
+    open fun checkVisibleNow() {
         rootInteraction.check(matches(isDisplayed()))
     }
 

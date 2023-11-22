@@ -36,7 +36,7 @@ class RoomTest {
     }
 
     @Test
-    fun test() {
+    fun test_add() {
         assertEquals(emptyList<ItemCache>(), dao.list())
 
         val cache = ItemCache(id = 1L, text = "first")
@@ -51,5 +51,70 @@ class RoomTest {
                 ItemCache(id = 2L, text = "second")
             ), dao.list()
         )
+    }
+
+    @Test
+    fun test_item() {
+        assertEquals(emptyList<ItemCache>(), dao.list())
+
+        val cache = ItemCache(id = 1L, text = "first")
+        dao.add(item = cache)
+        assertEquals(ItemCache(id = 1L, text = "first"), dao.item(id = 1L))
+
+        val next = ItemCache(id = 2L, text = "second")
+        dao.add(item = next)
+        assertEquals(ItemCache(id = 2L, text = "second"), dao.item(id = 2L))
+
+        assertEquals(
+            listOf(
+                ItemCache(id = 1L, text = "first"),
+                ItemCache(id = 2L, text = "second")
+            ), dao.list()
+        )
+    }
+
+    @Test
+    fun test_delete() {
+        val cache = ItemCache(id = 1L, text = "first")
+        dao.add(item = cache)
+
+        val next = ItemCache(id = 2L, text = "second")
+        dao.add(item = next)
+
+        assertEquals(
+            listOf(
+                ItemCache(id = 1L, text = "first"),
+                ItemCache(id = 2L, text = "second")
+            ), dao.list()
+        )
+
+        dao.delete(id = 1L)
+        assertEquals(listOf(ItemCache(id = 2L, text = "second")), dao.list())
+    }
+
+    @Test
+    fun test_update() {
+        val cache = ItemCache(id = 1L, text = "first")
+        dao.add(item = cache)
+
+        val next = ItemCache(id = 2L, text = "second")
+        dao.add(item = next)
+
+        assertEquals(
+            listOf(
+                ItemCache(id = 1L, text = "first"),
+                ItemCache(id = 2L, text = "second")
+            ), dao.list()
+        )
+
+        dao.add(ItemCache(1L, "newText"))
+        assertEquals(
+            listOf(
+                ItemCache(id = 1L, text = "newText"),
+                ItemCache(id = 2L, text = "second")
+            ), dao.list()
+        )
+
+        assertEquals(ItemCache(1L, "newText"), dao.item(1L))
     }
 }

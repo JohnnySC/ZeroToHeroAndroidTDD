@@ -17,7 +17,7 @@ class AddPage : AbstractPage(R.id.addLayout) {
     fun clickSaveButton() {
         onView(
             allOf(
-                withParent(isAssignableFrom(rootClass())),
+                withParent(isAssignableFrom(rootClass)),
                 withParent(withId(root)),
                 isAssignableFrom(Button::class.java),
                 withId(R.id.saveButton),
@@ -29,7 +29,7 @@ class AddPage : AbstractPage(R.id.addLayout) {
     fun inputText(text: String) {
         onView(
             allOf(
-                withParent(isAssignableFrom(rootClass())),
+                withParent(isAssignableFrom(rootClass)),
                 withParent(withId(root)),
                 isAssignableFrom(TextInputEditText::class.java),
                 withId(R.id.addInputEditText)
