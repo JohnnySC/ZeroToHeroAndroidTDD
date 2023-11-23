@@ -60,3 +60,6 @@ task/024-mvvm-recycler soluton on YouTube https://youtu.be/rva0YlnzsK4
 task/025-navigation soluton on YouTube https://youtu.be/fsimJIE-pME https://youtu.be/mnl5eVI_iuA https://youtu.be/fmnIkZHdbWA
 
 task/026-room soluton on YouTube https://youtu.be/hG-RhUfU98s
+
+task/027-room-delete soluton on YouTube https://youtu.be/eecz8Xy6xj0
+
