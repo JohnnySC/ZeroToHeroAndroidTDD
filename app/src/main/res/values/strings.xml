@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">ZeroToHeroAndroidTDD</string>
+    <string name="congratulations_textView">I am an Android Developer!</string>
 </resources>
