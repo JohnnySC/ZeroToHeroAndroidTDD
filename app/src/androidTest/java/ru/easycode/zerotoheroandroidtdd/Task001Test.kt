@@ -1,6 +1,7 @@
 package ru.easycode.zerotoheroandroidtdd
 
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withText
@@ -12,13 +13,14 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class InitialUiTest {
+class Task001Test {
 
     @get:Rule
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun test_hello_world() {
-        onView(withText("Hello World!")).check(matches(isDisplayed()))
+    fun test_change_text() {
+        onView(withText("Hello World!")).check(doesNotExist())
+        onView(withText("I am an Android Developer!")).check(matches(isDisplayed()))
     }
 }
