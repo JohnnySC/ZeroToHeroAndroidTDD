@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ZeroToHeroAndroidTDD</string>
+    <string name="hello_world">Hello World!</string>
+    <string name="new_text_tv">I am an Android Developer!</string>
 </resources>
