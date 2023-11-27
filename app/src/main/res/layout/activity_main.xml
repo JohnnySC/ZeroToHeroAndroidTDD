@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
@@ -20,5 +22,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_button"/>
+
+
+        android:text="@string/hello_world" />
+        android:text="@string/text_tv"
+        android:text="@string/text_text_view"/>
+  
+    <Button
+        android:id="@+id/changeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="change"/>
+
 
 </LinearLayout>
