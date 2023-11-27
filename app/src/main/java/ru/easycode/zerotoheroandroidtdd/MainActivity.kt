@@ -4,27 +4,39 @@ import android.os.Bundle
 import android.widget.TextView
 import ru.easycode.zerotoheroandroidtdd.databinding.ActivityMainBinding
 import androidx.appcompat.app.AppCompatActivity
-import ru.easycode.zerotoheroandroidtdd.databinding.ActivityMainBinding
 
 
 
 class MainActivity : AppCompatActivity() {
+    private lateinit var textView: TextView
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val textView = binding.titleTextView
+        textView = binding.titleTextView
+
+        textView = binding.titleTextView
         val button = binding.changeButton
         button.setOnClickListener { changeTextTextView(textView) }
 
 
-        val textView = binding.titleTextView
-        val button = binding.changeButton
-        button.setOnClickListener { changeTextTextView(textView) }
+    }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("key", textView.text.toString())
+    }
 
+    override fun onRestoreInstanceState(
+        savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        textView.text = savedInstanceState.getString("key")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
     }
 
     private fun changeTextTextView(textView: TextView) {
