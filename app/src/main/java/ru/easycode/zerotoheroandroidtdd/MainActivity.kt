@@ -16,8 +16,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         textView = binding.titleTextView
-
-        textView = binding.titleTextView
         val button = binding.changeButton
         button.setOnClickListener { changeTextTextView(textView) }
 
