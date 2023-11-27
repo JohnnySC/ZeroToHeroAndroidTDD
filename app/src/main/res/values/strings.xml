@@ -3,6 +3,4 @@
     <string name="text_button">change</string>
     <string name="text_tv">Hello World!</string>
     <string name="new_text_tv">"I am an Android Developer!"</string>
-    <string name="hello_world">Hello World!</string>
-    <string name="new_text_tv">I am an Android Developer!</string>
 </resources>
