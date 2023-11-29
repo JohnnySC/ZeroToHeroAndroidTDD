@@ -21,8 +21,8 @@
 
     <Button
         android:id="@+id/removeButton"
+        android:text="remove"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="remove"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

@@ -1,7 +1,5 @@
 package ru.easycode.zerotoheroandroidtdd
-
 import android.annotation.SuppressLint
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -14,8 +12,8 @@ class MainActivity : AppCompatActivity() {
     private var state: State = State.Initial
 
     private lateinit var textView: TextView
-    private lateinit var linearLayout: LinearLayout
     private lateinit var button: Button
+    private lateinit var linearLayout: LinearLayout
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +26,8 @@ class MainActivity : AppCompatActivity() {
 
         button.setOnClickListener {
             state = State.Removed
-            state.apply(linearLayout, textView)
+            state.apply(linearLayout, textView, button)
+
         }
     }
 
@@ -37,32 +36,28 @@ class MainActivity : AppCompatActivity() {
         outState.putSerializable(KEY, state)
     }
 
+    @Suppress("DEPRECATION")
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            state = savedInstanceState.getSerializable(KEY, State::class.java) as State
-        } else {
-            state = savedInstanceState.getSerializable(KEY) as State
-        }
-        state.apply(linearLayout, textView)
+        state = (savedInstanceState.getSerializable(KEY) ?: State.Initial) as State
+        state.apply(linearLayout, textView, button)
     }
 
     companion object {
         private const val KEY = "key"
     }
 
-    interface State : Serializable {
+interface State : Serializable {
 
-        fun apply(linearLayout: LinearLayout, textView: TextView)
+    fun apply(linearLayout: LinearLayout, textView: TextView, button: Button)
 
-        object Initial : State {
-            override fun apply(linearLayout: LinearLayout, textView: TextView) = Unit
-        }
+    object Initial : State {
+        override fun apply(linearLayout: LinearLayout, textView: TextView, button: Button) = Unit
+    }
 
-        object Removed : State {
-            override fun apply(linearLayout: LinearLayout, textView: TextView) {
-                linearLayout.removeView(textView)
-            }
-        }
+    object Removed : State {
+        override fun apply(linearLayout: LinearLayout, textView: TextView, button: Button) {
+            linearLayout.removeView(textView)
+            button.isEnabled = false
     }
 }
