@@ -1,11 +1,10 @@
 package ru.easycode.zerotoheroandroidtdd
-
 import android.annotation.SuppressLint
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import java.io.Serializable
 
 class MainActivity : AppCompatActivity() {
@@ -24,9 +23,11 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.removeButton)
         linearLayout = findViewById(R.id.rootLayout)
 
+
         button.setOnClickListener {
             state = State.Removed
             state.apply(linearLayout, textView, button)
+
         }
     }
 
@@ -45,7 +46,6 @@ class MainActivity : AppCompatActivity() {
     companion object {
         private const val KEY = "key"
     }
-}
 
 interface State : Serializable {
 
@@ -59,6 +59,5 @@ interface State : Serializable {
         override fun apply(linearLayout: LinearLayout, textView: TextView, button: Button) {
             linearLayout.removeView(textView)
             button.isEnabled = false
-        }
     }
 }
