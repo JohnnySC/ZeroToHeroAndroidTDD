@@ -140,5 +140,13 @@ private interface FakeDataSource : ItemsDao {
         override fun delete(id: Long) {
             list.remove(item(id))
         }
+
+        override fun item(id: Long): ItemCache {
+            return list.find { it.id == id }!!
+        }
+
+        override fun delete(id: Long) {
+            list.remove(item(id))
+        }
     }
 }
