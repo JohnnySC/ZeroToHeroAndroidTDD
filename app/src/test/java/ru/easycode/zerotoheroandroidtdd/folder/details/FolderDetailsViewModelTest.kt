@@ -85,7 +85,8 @@ class FolderDetailsViewModelTest {
     fun test_comeback() {
         viewModel.comeback()
         clear.check(listOf(FolderDetailsViewModel::class.java))
-        order.check(listOf(CLEAR))
+        navigation.checkScreen(Screen.Pop)
+        order.check(listOf(CLEAR, NAVIGATE))
     }
 }
 
