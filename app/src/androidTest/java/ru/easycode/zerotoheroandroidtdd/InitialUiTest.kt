@@ -19,6 +19,6 @@ class InitialUiTest {
 
     @Test
     fun test_hello_world() {
-        onView(withText("Hello World!")).check(matches(isDisplayed()))
+        onView(withText("Hello World! ")).check(matches(isDisplayed()))
     }
 }
