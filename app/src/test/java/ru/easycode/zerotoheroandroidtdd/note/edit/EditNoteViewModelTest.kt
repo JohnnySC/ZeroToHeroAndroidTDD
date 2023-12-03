@@ -9,6 +9,7 @@ import ru.easycode.zerotoheroandroidtdd.core.FakeClear.Companion.CLEAR
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation.Companion.NAVIGATE
 import ru.easycode.zerotoheroandroidtdd.core.Order
+import ru.easycode.zerotoheroandroidtdd.note.core.NotesRepository
 
 class EditNoteViewModelTest {
 

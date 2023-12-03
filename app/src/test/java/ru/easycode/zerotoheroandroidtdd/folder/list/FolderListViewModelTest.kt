@@ -7,6 +7,7 @@ import org.junit.Test
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation.Companion.NAVIGATE
 import ru.easycode.zerotoheroandroidtdd.core.Order
+import ru.easycode.zerotoheroandroidtdd.folder.core.FoldersRepository
 import ru.easycode.zerotoheroandroidtdd.folder.details.FakeFolderLiveDataWrapper
 import ru.easycode.zerotoheroandroidtdd.folder.list.FakeLiveDataWrapper.Companion.UPDATE
 import ru.easycode.zerotoheroandroidtdd.folder.list.FakeRepository.Companion.FOLDERS

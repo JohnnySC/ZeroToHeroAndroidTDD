@@ -9,6 +9,7 @@ import ru.easycode.zerotoheroandroidtdd.core.FakeClear.Companion.CLEAR
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation.Companion.NAVIGATE
 import ru.easycode.zerotoheroandroidtdd.core.Order
+import ru.easycode.zerotoheroandroidtdd.note.core.NotesRepository
 
 class CreateNoteViewModelTest {
 
@@ -93,7 +94,7 @@ private interface FakeCreateNoteRepository : NotesRepository.Create {
 
         override suspend fun createNote(folderId: Long, text: String): Long {
             order.add(CREATE_NOTE_REPOSITORY)
-            return NoteUi(id = noteId++, title = text, folderId = folderId)
+            return MyNote(id = noteId++, title = text, folderId = folderId)
         }
     }
 }

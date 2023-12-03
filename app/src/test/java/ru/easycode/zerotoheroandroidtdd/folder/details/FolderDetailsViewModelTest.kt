@@ -9,12 +9,12 @@ import ru.easycode.zerotoheroandroidtdd.core.FakeClear.Companion.CLEAR
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation.Companion.NAVIGATE
 import ru.easycode.zerotoheroandroidtdd.core.Order
+import ru.easycode.zerotoheroandroidtdd.note.core.NotesRepository
 
 class FolderDetailsViewModelTest {
 
     private lateinit var viewModel: FolderDetailsViewModel
     private lateinit var clear: FakeClear
-    private lateinit var folderRepository: FakeFolderRepository
     private lateinit var noteListRepository: FakeNoteListRepository
     private lateinit var folderLiveDataWrapper: FakeFolderLiveDataWrapper
     private lateinit var noteListLiveDataWrapper: FakeNoteListLiveDataWrapper
@@ -25,13 +25,11 @@ class FolderDetailsViewModelTest {
     fun setup() {
         order = Order()
         clear = FakeClear.Base(order)
-        folderRepository = FakeFolderRepository.Base(order)
         noteListRepository = FakeNoteListRepository.Base(order)
         noteListLiveDataWrapper = FakeNoteListLiveDataWrapper.Base(order)
         folderLiveDataWrapper = FakeFolderLiveDataWrapper.Base(order)
         navigation = FakeNavigation.Base(order)
         viewModel = FolderDetailsViewModel(
-            folderRepository = folderRepository,
             noteListRepository = noteListRepository,
             liveDataWrapper = noteListLiveDataWrapper,
             folderLiveDataWrapper = folderLiveDataWrapper,
