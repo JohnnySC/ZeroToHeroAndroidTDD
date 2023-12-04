@@ -63,3 +63,5 @@ task/026-room soluton on YouTube https://youtu.be/hG-RhUfU98s
 
 task/027-room-delete soluton on YouTube https://youtu.be/eecz8Xy6xj0
 
+task/028-room-crud soluton on YouTube https://youtu.be/EBE2ZWybj34
+
