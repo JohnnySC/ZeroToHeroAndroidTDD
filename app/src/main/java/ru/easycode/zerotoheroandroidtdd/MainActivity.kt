@@ -37,7 +37,6 @@ class MainActivity : AppCompatActivity() {
         textView.text = savedInstanceState.getString(KEY).toString()
     }
 
-
     companion object {
         private const val KEY = "key"
     }
