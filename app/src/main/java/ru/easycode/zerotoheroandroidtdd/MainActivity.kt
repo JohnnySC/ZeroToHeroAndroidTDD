@@ -7,11 +7,11 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 
 class MainActivity : AppCompatActivity() {
-
-    private var count = Count.Base(step = 2)
-    private lateinit var button: Button
+  
+    private var uiState: UiState = UiState.Base("0")
+    private val count = Count.Base(2, 4)
     private lateinit var textView: TextView
-
+    private lateinit var button: Button
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,19 +22,20 @@ class MainActivity : AppCompatActivity() {
         button = findViewById(R.id.incrementButton)
 
         button.setOnClickListener {
-            textView.text = count.increment(textView.text.toString())
+            uiState = count.increment(textView.text.toString())
+            uiState.apply(textView, button)
         }
     }
 
-    //or more right to use tag freezesText
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putString(KEY, textView.text.toString())
+        outState.putSerializable(KEY, uiState)
     }
 
     override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
-        textView.text = savedInstanceState.getString(KEY).toString()
+        uiState = savedInstanceState.getSerializable(KEY, UiState::class.java) as UiState
+        uiState.apply(textView, button)
     }
 
     companion object {
