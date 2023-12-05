@@ -6,11 +6,12 @@ import org.junit.Test
 /**
  * Please also check ui test
  * @see ru.easycode.zerotoheroandroidtdd.Task012Test
- */
+
 class CountTest {
 
     @Test
     fun test_increment_step_5() {
+
         val count: Count = Count.Base(step = 5, max = 10)
 
         var actual: UiState = count.increment(number = "0")

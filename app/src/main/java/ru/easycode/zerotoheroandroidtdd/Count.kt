@@ -1,7 +1,6 @@
 package ru.easycode.zerotoheroandroidtdd
 
 interface Count {
-
     fun increment(number: String): UiState
 
     class Base(
@@ -28,4 +27,3 @@ interface Count {
         }
     }
 }
-
