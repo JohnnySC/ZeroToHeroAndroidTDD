@@ -3,7 +3,10 @@ package ru.easycode.zerotoheroandroidtdd.folder.core
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import ru.easycode.zerotoheroandroidtdd.core.FolderCache
+import ru.easycode.zerotoheroandroidtdd.core.FoldersDao
 import ru.easycode.zerotoheroandroidtdd.note.core.FakeNotesDao
+import ru.easycode.zerotoheroandroidtdd.note.core.Now
 
 class FoldersRepositoryTest {
 
@@ -31,6 +34,7 @@ class FoldersRepositoryTest {
         assertEquals(foldersInitialExpected, foldersInitialActual)
 
         repository.delete(folderId = 7L)
+        notesDao.checkDeleteCalledWith(folderId = 7L)
 
         repository.rename(folderId = 8L, newName = "new name for second")
 

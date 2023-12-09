@@ -1,8 +1,10 @@
 package ru.easycode.zerotoheroandroidtdd.note.core
 
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Test
+import ru.easycode.zerotoheroandroidtdd.core.NoteCache
+import ru.easycode.zerotoheroandroidtdd.core.NotesDao
 import ru.easycode.zerotoheroandroidtdd.folder.core.FakeNow
 
 class NotesRepositoryTest {
@@ -63,12 +65,14 @@ class NotesRepositoryTest {
 
 interface FakeNotesDao : NotesDao {
 
+    fun checkDeleteCalledWith(folderId: Long)
+
     class Base : FakeNotesDao {
 
         private val set = HashSet<NoteCache>()
 
         override suspend fun notes(folderId: Long): List<NoteCache> {
-            return set.filter { it.folderId == folderId }.toList()
+            return set.filter { it.folderId == folderId }.toList().sortedBy { it.id }
         }
 
         override suspend fun note(noteId: Long): NoteCache {
@@ -86,6 +90,20 @@ interface FakeNotesDao : NotesDao {
             set.find { it.id == noteId }?.let {
                 set.remove(it)
             }
+        }
+
+        private var deleteCalledWithFolderId: Long = -1
+
+        override suspend fun deleteByFolderId(folderId: Long) {
+            deleteCalledWithFolderId = folderId
+            val itemsToRemove = set.filter { it.folderId == folderId }
+            itemsToRemove.forEach {
+                set.remove(it)
+            }
+        }
+
+        override fun checkDeleteCalledWith(folderId: Long) {
+            assertEquals(deleteCalledWithFolderId, folderId)
         }
     }
 }

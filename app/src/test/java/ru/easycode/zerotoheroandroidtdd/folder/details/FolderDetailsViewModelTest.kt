@@ -9,7 +9,13 @@ import ru.easycode.zerotoheroandroidtdd.core.FakeClear.Companion.CLEAR
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation.Companion.NAVIGATE
 import ru.easycode.zerotoheroandroidtdd.core.Order
+import ru.easycode.zerotoheroandroidtdd.folder.edit.EditFolderScreen
+import ru.easycode.zerotoheroandroidtdd.folder.list.FolderUi
+import ru.easycode.zerotoheroandroidtdd.folder.list.FoldersListScreen
+import ru.easycode.zerotoheroandroidtdd.note.core.MyNote
 import ru.easycode.zerotoheroandroidtdd.note.core.NotesRepository
+import ru.easycode.zerotoheroandroidtdd.note.create.CreateNoteScreen
+import ru.easycode.zerotoheroandroidtdd.note.edit.EditNoteScreen
 
 class FolderDetailsViewModelTest {
 
@@ -18,7 +24,7 @@ class FolderDetailsViewModelTest {
     private lateinit var noteListRepository: FakeNoteListRepository
     private lateinit var folderLiveDataWrapper: FakeFolderLiveDataWrapper
     private lateinit var noteListLiveDataWrapper: FakeNoteListLiveDataWrapper
-    private lateinit var navigation: FakeNavigation
+    private lateinit var navigation: FakeNavigation.Update
     private lateinit var order: Order
 
     @Before
@@ -34,6 +40,7 @@ class FolderDetailsViewModelTest {
             liveDataWrapper = noteListLiveDataWrapper,
             folderLiveDataWrapper = folderLiveDataWrapper,
             navigation = navigation,
+            clear = clear,
             dispatcher = Dispatchers.Unconfined,
             dispatcherMain = Dispatchers.Unconfined
         )
@@ -41,6 +48,7 @@ class FolderDetailsViewModelTest {
 
     @Test
     fun test_init() {
+        folderLiveDataWrapper.update(FolderUi(id = 7L, "folder title", 2))
         noteListRepository.expectNotes(
             listOf(
                 MyNote(id = 1L, title = "first note", folderId = 7L),
@@ -48,7 +56,7 @@ class FolderDetailsViewModelTest {
             )
         )
 
-        viewModel.init(folderId = 7L)
+        viewModel.init()
         noteListLiveDataWrapper.check(
             listOf(
                 NoteUi(id = 1L, title = "first note", folderId = 7L),
@@ -57,35 +65,38 @@ class FolderDetailsViewModelTest {
         )
         noteListRepository.checkFolderId(7L)
 
-        order.check(listOf(NOTES_REPOSITORY_READ, UPDATE_NOTES_LIVEDATA))
+        order.check(listOf(UPDATE_FOLDER_LIVEDATA, NOTES_REPOSITORY_READ, UPDATE_NOTES_LIVEDATA))
     }
 
     @Test
     fun test_create_note() {
+        folderLiveDataWrapper.update(FolderUi(id = 9L, "folder title", 0))
         viewModel.createNote()
         navigation.checkScreen(CreateNoteScreen(folderId = 9L))
-        order.check(listOf(NAVIGATE))
+        order.check(listOf(UPDATE_FOLDER_LIVEDATA, NAVIGATE))
     }
 
     @Test
     fun test_edit_note() {
-        viewModel.editNote()
-        navigation.checkScreen(EditNoteScreen(folderId = 9L))
-        order.check(listOf(NAVIGATE))
+        folderLiveDataWrapper.update(FolderUi(id = 9L, "folder title", 0))
+        viewModel.editNote(NoteUi(id = 15L, title = "old", folderId = 9L))
+        navigation.checkScreen(EditNoteScreen(noteId = 15L))
+        order.check(listOf(UPDATE_FOLDER_LIVEDATA, NAVIGATE))
     }
 
     @Test
     fun test_edit_folder() {
+        folderLiveDataWrapper.update(FolderUi(id = 9L, "folder title", 0))
         viewModel.editFolder()
         navigation.checkScreen(EditFolderScreen(folderId = 9L))
-        order.check(listOf(NAVIGATE))
+        order.check(listOf(UPDATE_FOLDER_LIVEDATA, NAVIGATE))
     }
 
     @Test
     fun test_comeback() {
         viewModel.comeback()
         clear.check(listOf(FolderDetailsViewModel::class.java))
-        navigation.checkScreen(Screen.Pop)
+        navigation.checkScreen(FoldersListScreen)
         order.check(listOf(CLEAR, NAVIGATE))
     }
 }

@@ -4,18 +4,23 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions.*
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withParent
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.hamcrest.CoreMatchers.allOf
 
 class FoldersListPage {
 
     private val rootId: Int = R.id.foldersRootLayout
-    private val recyclerViewMatcher = RecyclerViewMatcher(R.id.foldersRecyclerView)
+    private fun recyclerViewMatcher() = RecyclerViewMatcher(R.id.foldersRecyclerView)
 
-    private val title = onView(
+    private fun title() = onView(
         allOf(
             withText("Folders"),
             isAssignableFrom(TextView::class.java),
@@ -26,7 +31,7 @@ class FoldersListPage {
     )
 
     fun checkVisibleNow() {
-        title.check(matches(isDisplayed()))
+        title().check(matches(isDisplayed()))
     }
 
     fun clickAddButton() {
@@ -41,7 +46,7 @@ class FoldersListPage {
     }
 
     fun checkNotVisibleNow() {
-        title.check(doesNotExist())
+        title().check(doesNotExist())
     }
 
     fun checkFolder(position: Int, title: String, count: String) {
@@ -51,7 +56,7 @@ class FoldersListPage {
                 isAssignableFrom(TextView::class.java),
                 withParent(withId(folderLinearLayout)),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
-                recyclerViewMatcher.atPosition(position, R.id.folderTitleTextView)
+                recyclerViewMatcher().atPosition(position, R.id.folderTitleTextView)
             )
         ).check(matches(withText(title)))
 
@@ -60,12 +65,12 @@ class FoldersListPage {
                 isAssignableFrom(TextView::class.java),
                 withParent(withId(folderLinearLayout)),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
-                recyclerViewMatcher.atPosition(position, R.id.folderCountTextView)
+                recyclerViewMatcher().atPosition(position, R.id.folderCountTextView)
             )
         ).check(matches(withText(count)))
     }
 
     fun clickFolderAt(position: Int) {
-        onView(recyclerViewMatcher.atPosition(position)).perform(click())
+        onView(recyclerViewMatcher().atPosition(position)).perform(click())
     }
 }

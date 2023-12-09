@@ -7,15 +7,18 @@ import org.junit.Test
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation.Companion.NAVIGATE
 import ru.easycode.zerotoheroandroidtdd.core.Order
+import ru.easycode.zerotoheroandroidtdd.folder.core.Folder
+import ru.easycode.zerotoheroandroidtdd.folder.core.FolderLiveDataWrapper
 import ru.easycode.zerotoheroandroidtdd.folder.core.FoldersRepository
-import ru.easycode.zerotoheroandroidtdd.folder.details.FakeFolderLiveDataWrapper
+import ru.easycode.zerotoheroandroidtdd.folder.create.CreateFolderScreen
+import ru.easycode.zerotoheroandroidtdd.folder.details.FolderDetailsScreen
 import ru.easycode.zerotoheroandroidtdd.folder.list.FakeLiveDataWrapper.Companion.UPDATE
 import ru.easycode.zerotoheroandroidtdd.folder.list.FakeRepository.Companion.FOLDERS
 
 class FolderListViewModelTest {
 
     private lateinit var order: Order
-    private lateinit var navigation: FakeNavigation
+    private lateinit var navigation: FakeNavigation.Update
     private lateinit var repository: FakeRepository
     private lateinit var folderLiveDataWrapper: FakeFolderUpdateLiveDataWrapper
     private lateinit var liveDataWrapper: FakeLiveDataWrapper
@@ -26,6 +29,7 @@ class FolderListViewModelTest {
         order = Order()
         repository = FakeRepository.Base(order)
         liveDataWrapper = FakeLiveDataWrapper.Base(order)
+        folderLiveDataWrapper = FakeFolderUpdateLiveDataWrapper.Base(order)
         navigation = FakeNavigation.Base(order)
         viewModel = FolderListViewModel(
             repository = repository,
@@ -33,7 +37,7 @@ class FolderListViewModelTest {
             folderLiveDataWrapper = folderLiveDataWrapper,
             navigation = navigation,
             dispatcher = Dispatchers.Unconfined,
-            disatcherMain = Dispatchers.Unconfined
+            dispatcherMain = Dispatchers.Unconfined
         )
     }
 
@@ -96,7 +100,7 @@ class FolderListViewModelTest {
                 notesCount = 1
             )
         )
-        navigation.checkScreen(FolderDetailsScreen(id = 1L))
+        navigation.checkScreen(FolderDetailsScreen)
         order.check(listOf(FOLDERS, UPDATE, UPDATE_FOLDER_LIVEDATA, NAVIGATE))
     }
 }
@@ -153,7 +157,7 @@ private interface FakeFolderUpdateLiveDataWrapper : FolderLiveDataWrapper.Update
 
     fun check(expected: FolderUi)
 
-    class Base(private val order: Order) : FakeFolderLiveDataWrapper {
+    class Base(private val order: Order) : FakeFolderUpdateLiveDataWrapper {
 
         private lateinit var actual: FolderUi
 

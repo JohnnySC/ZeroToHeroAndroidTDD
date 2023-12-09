@@ -4,16 +4,20 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions.*
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withParent
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.hamcrest.CoreMatchers.allOf
 
 class FolderDetailsPage {
 
     private val rootId: Int = R.id.folderDetailsRootLayout
-    private val titleView = onView(
+    private fun titleView() = onView(
         allOf(
             isAssignableFrom(TextView::class.java),
             withId(R.id.folderNameTextView),
@@ -21,10 +25,11 @@ class FolderDetailsPage {
             withParent(withId(rootId))
         )
     )
-    private val recyclerViewMatcher = RecyclerViewMatcher(R.id.notesRecyclerView)
+
+    private fun recyclerViewMatcher() = RecyclerViewMatcher(R.id.notesRecyclerView)
 
     fun checkVisibleNow(title: String, count: String) {
-        titleView.check(matches(withText(title)))
+        titleView().check(matches(withText(title)))
 
         onView(
             allOf(
@@ -48,16 +53,14 @@ class FolderDetailsPage {
     }
 
     fun checkNotVisibleNow() {
-        titleView.check(doesNotExist())
+        titleView().check(doesNotExist())
     }
 
     fun checkNote(position: Int, title: String) {
         onView(
             allOf(
                 isAssignableFrom(TextView::class.java),
-                withParent(withId(rootId)),
-                withParent(isAssignableFrom(ConstraintLayout::class.java)),
-                recyclerViewMatcher.atPosition(position, R.id.noteTitleTextView)
+                recyclerViewMatcher().atPosition(position, R.id.noteTitleTextView)
             )
         ).check(matches(withText(title)))
     }
@@ -75,12 +78,6 @@ class FolderDetailsPage {
     }
 
     fun clickNote(position: Int) {
-        onView(
-            allOf(
-                withParent(withId(rootId)),
-                withParent(isAssignableFrom(ConstraintLayout::class.java)),
-                recyclerViewMatcher.atPosition(position)
-            )
-        ).perform(click())
+        onView(recyclerViewMatcher().atPosition(position)).perform(click())
     }
 }

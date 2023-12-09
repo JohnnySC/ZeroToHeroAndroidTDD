@@ -10,12 +10,15 @@ import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation.Companion.NAVIGATE
 import ru.easycode.zerotoheroandroidtdd.core.Order
 import ru.easycode.zerotoheroandroidtdd.folder.core.FoldersRepository
+import ru.easycode.zerotoheroandroidtdd.folder.list.FolderListLiveDataWrapper
+import ru.easycode.zerotoheroandroidtdd.folder.list.FolderUi
+import ru.easycode.zerotoheroandroidtdd.folder.list.FoldersListScreen
 
 class CreateFolderViewModelTest {
 
     private lateinit var order: Order
     private lateinit var liveDataWrapper: FakeAddLiveDataWrapper
-    private lateinit var navigation: FakeNavigation
+    private lateinit var navigation: FakeNavigation.Update
     private lateinit var repository: FakeCreateRepository
     private lateinit var clear: FakeClear
     private lateinit var viewModel: CreateFolderViewModel
@@ -29,9 +32,11 @@ class CreateFolderViewModelTest {
         liveDataWrapper = FakeAddLiveDataWrapper.Base(order)
         viewModel = CreateFolderViewModel(
             repository = repository,
+            liveDataWrapper = liveDataWrapper,
             navigation = navigation,
+            clear = clear,
             dispatcher = Dispatchers.Unconfined,
-            disatcherMain = Dispatchers.Unconfined
+            dispatcherMain = Dispatchers.Unconfined
         )
     }
 
@@ -41,7 +46,7 @@ class CreateFolderViewModelTest {
 
         repository.checkCreate("some folder name")
         liveDataWrapper.check(FolderUi(id = 45678, title = "some folder name", notesCount = 0))
-        navigation.checkScreen(Screen.Pop)
+        navigation.checkScreen(FoldersListScreen)
         clear.check(listOf(CreateFolderViewModel::class.java))
 
         order.check(listOf(REPOSITORY_CREATE, LIVEDATA_CREATE, CLEAR, NAVIGATE))
@@ -52,7 +57,7 @@ class CreateFolderViewModelTest {
         viewModel.comeback()
 
         clear.check(listOf(CreateFolderViewModel::class.java))
-        navigation.checkScreen(Screen.Pop)
+        navigation.checkScreen(FoldersListScreen)
         order.check(listOf(CLEAR, NAVIGATE))
     }
 }

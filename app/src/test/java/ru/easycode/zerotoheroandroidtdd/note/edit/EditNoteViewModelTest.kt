@@ -9,13 +9,17 @@ import ru.easycode.zerotoheroandroidtdd.core.FakeClear.Companion.CLEAR
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation.Companion.NAVIGATE
 import ru.easycode.zerotoheroandroidtdd.core.Order
+import ru.easycode.zerotoheroandroidtdd.folder.core.FolderLiveDataWrapper
+import ru.easycode.zerotoheroandroidtdd.folder.details.FolderDetailsScreen
+import ru.easycode.zerotoheroandroidtdd.folder.details.NoteListLiveDataWrapper
+import ru.easycode.zerotoheroandroidtdd.note.core.MyNote
 import ru.easycode.zerotoheroandroidtdd.note.core.NotesRepository
 
 class EditNoteViewModelTest {
 
     private lateinit var order: Order
     private lateinit var repository: FakeEditNoteRepository
-    private lateinit var navigation: FakeNavigation
+    private lateinit var navigation: FakeNavigation.Update
     private lateinit var clear: FakeClear
     private lateinit var noteLiveDataWrapper: FakeNoteLiveDataWrapper
     private lateinit var noteListLiveDataWrapper: FakeNoteListLiveDataWrapper
@@ -34,7 +38,7 @@ class EditNoteViewModelTest {
         viewModel = EditNoteViewModel(
             folderLiveDataWrapper = folderLiveDataWrapper,
             noteLiveDataWrapper = noteLiveDataWrapper,
-            noteListLiveDataWrapper = noteLiveDataWrapper,
+            noteListLiveDataWrapper = noteListLiveDataWrapper,
             repository = repository,
             navigation = navigation,
             clear = clear,
@@ -58,7 +62,7 @@ class EditNoteViewModelTest {
 
         repository.checkDelete(32L)
         clear.check(listOf(EditNoteViewModel::class.java))
-        navigation.checkScreen(Screen.Pop)
+        navigation.checkScreen(FolderDetailsScreen)
         order.check(listOf(REPOSITORY_DELETE, DECREMENT_COUNT_LIVEDATA, CLEAR, NAVIGATE))
     }
 
@@ -69,7 +73,7 @@ class EditNoteViewModelTest {
         repository.checkRename(33L, "a new text")
         noteListLiveDataWrapper.check(33L, "a new text")
         clear.check(listOf(EditNoteViewModel::class.java))
-        navigation.checkScreen(Screen.Pop)
+        navigation.checkScreen(FolderDetailsScreen)
         order.check(listOf(REPOSITORY_RENAME, NOTES_LIVE_DATA_UPDATE, CLEAR, NAVIGATE))
     }
 
@@ -78,7 +82,7 @@ class EditNoteViewModelTest {
         viewModel.comeback()
 
         clear.check(listOf(EditNoteViewModel::class.java))
-        navigation.checkScreen(Screen.Pop)
+        navigation.checkScreen(FolderDetailsScreen)
         order.check(listOf(CLEAR, NAVIGATE))
     }
 }

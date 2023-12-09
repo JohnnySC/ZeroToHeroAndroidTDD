@@ -1,6 +1,9 @@
 package ru.easycode.zerotoheroandroidtdd.folder.details
 
+import org.junit.Assert.assertEquals
 import ru.easycode.zerotoheroandroidtdd.core.Order
+import ru.easycode.zerotoheroandroidtdd.folder.core.FolderLiveDataWrapper
+import ru.easycode.zerotoheroandroidtdd.folder.list.FolderUi
 
 interface FakeFolderLiveDataWrapper : FolderLiveDataWrapper.Mutable {
 
@@ -17,6 +20,10 @@ interface FakeFolderLiveDataWrapper : FolderLiveDataWrapper.Mutable {
         override fun update(folder: FolderUi) {
             order.add(UPDATE_FOLDER_LIVEDATA)
             actual = folder
+        }
+
+        override fun folderId(): Long {
+            return actual.id
         }
     }
 }

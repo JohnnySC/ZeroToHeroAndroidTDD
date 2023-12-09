@@ -7,6 +7,7 @@ import org.junit.Assert.*
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import ru.easycode.zerotoheroandroidtdd.main.MainActivity
 
 @RunWith(AndroidJUnit4::class)
 class Task029Test {
@@ -45,8 +46,8 @@ class Task029Test {
 
         createNotePage.clickSaveButton()
         createNotePage.checkNotVisibleNow()
-        folderDetailsPage.checkVisibleNow(title = "first folder", count = "1")
         folderDetailsPage.checkNote(position = 0, title = "note 1 in folder 1")
+        folderDetailsPage.checkVisibleNow(title = "first folder", count = "1")
 
         Espresso.pressBack()
         foldersListPage.checkVisibleNow()

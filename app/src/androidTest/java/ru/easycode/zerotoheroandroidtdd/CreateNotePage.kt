@@ -4,16 +4,23 @@ import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.*
-import androidx.test.espresso.assertion.ViewAssertions.*
-import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.espresso.action.ViewActions.click
+import androidx.test.espresso.action.ViewActions.closeSoftKeyboard
+import androidx.test.espresso.action.ViewActions.typeText
+import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
+import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.matcher.ViewMatchers.isAssignableFrom
+import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
+import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.espresso.matcher.ViewMatchers.withParent
+import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.google.android.material.textfield.TextInputEditText
 import org.hamcrest.CoreMatchers.allOf
 
 class CreateNotePage {
 
     private val rootId: Int = R.id.createNoteRootLayout
-    private val title = onView(
+    private fun title() = onView(
         allOf(
             withParent(isAssignableFrom(LinearLayout::class.java)),
             withParent(withId(rootId)),
@@ -24,7 +31,7 @@ class CreateNotePage {
     )
 
     fun checkVisibleNow() {
-        title.check(matches(isDisplayed()))
+        title().check(matches(isDisplayed()))
     }
 
     fun inputNote(text: String) {
@@ -35,7 +42,7 @@ class CreateNotePage {
                 isAssignableFrom(TextInputEditText::class.java),
                 withId(R.id.createNoteEditText),
             )
-        ).perform(typeText(text))
+        ).perform(typeText(text), closeSoftKeyboard())
     }
 
     fun clickSaveButton() {
@@ -51,6 +58,6 @@ class CreateNotePage {
     }
 
     fun checkNotVisibleNow() {
-        title.check(doesNotExist())
+        title().check(doesNotExist())
     }
 }

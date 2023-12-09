@@ -9,14 +9,18 @@ import ru.easycode.zerotoheroandroidtdd.core.FakeClear.Companion.CLEAR
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation
 import ru.easycode.zerotoheroandroidtdd.core.FakeNavigation.Companion.NAVIGATE
 import ru.easycode.zerotoheroandroidtdd.core.Order
+import ru.easycode.zerotoheroandroidtdd.folder.core.FolderLiveDataWrapper
 import ru.easycode.zerotoheroandroidtdd.folder.core.FoldersRepository
+import ru.easycode.zerotoheroandroidtdd.folder.details.FolderDetailsScreen
+import ru.easycode.zerotoheroandroidtdd.folder.details.FolderDetailsViewModel
+import ru.easycode.zerotoheroandroidtdd.folder.list.FoldersListScreen
 
 class EditFolderViewModelTest {
 
     private lateinit var order: Order
     private lateinit var folderLiveDataWrapper: FakeRenameFolderLiveDataWrapper
     private lateinit var repository: FakeEditFolderRepository
-    private lateinit var navigation: FakeNavigation
+    private lateinit var navigation: FakeNavigation.Update
     private lateinit var clear: FakeClear
     private lateinit var viewModel: EditFolderViewModel
 
@@ -43,7 +47,7 @@ class EditFolderViewModelTest {
 
         repository.checkRename(4L, "new folder name")
         folderLiveDataWrapper.check("new folder name")
-        navigation.checkScreen(Screen.Pop)
+        navigation.checkScreen(FolderDetailsScreen)
         clear.check(listOf(EditFolderViewModel::class.java))
         order.check(listOf(REPOSITORY_RENAME, RENAME_LIVEDATA, CLEAR, NAVIGATE))
     }
@@ -63,7 +67,7 @@ class EditFolderViewModelTest {
         viewModel.comeback()
 
         clear.check(listOf(EditFolderViewModel::class.java))
-        navigation.checkScreen(Screen.Pop)
+        navigation.checkScreen(FolderDetailsScreen)
         order.check(listOf(CLEAR, NAVIGATE))
     }
 }
