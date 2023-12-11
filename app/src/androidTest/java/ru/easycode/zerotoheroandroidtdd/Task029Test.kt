@@ -50,6 +50,7 @@ class Task029Test {
         folderDetailsPage.checkVisibleNow(title = "first folder", count = "1")
 
         Espresso.pressBack()
+        folderDetailsPage.checkNotVisibleNow()
         foldersListPage.checkVisibleNow()
         foldersListPage.checkFolder(position = 0, title = "first folder", count = "1")
     }
