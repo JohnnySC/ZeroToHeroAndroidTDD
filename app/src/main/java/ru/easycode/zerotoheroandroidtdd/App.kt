@@ -4,9 +4,10 @@ import android.app.Application
 
 class App : Application() {
 
-    lateinit var liveData: LiveDataWrapper
+    lateinit var mainViewModel: MainViewModel
     override fun onCreate() {
         super.onCreate()
-        liveData = LiveDataWrapper.Base()
+        val liveDataWrapper = LiveDataWrapper.Base()
+        mainViewModel = MainViewModel(liveDataWrapper)
     }
 }

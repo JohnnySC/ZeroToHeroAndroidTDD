@@ -10,30 +10,24 @@ import ru.easycode.zerotoheroandroidtdd.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var liveData: LiveDataWrapper
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        liveData = (application as App).liveData
+        mainViewModel = (application as App).mainViewModel
 
         binding.actionButton.setOnClickListener {
-            val text = (binding.inputEditText.text).toString()
-            liveData.update(text)
+            mainViewModel.addText(binding.inputEditText.text.toString())
             binding.inputEditText.text?.clear()
         }
 
-        liveData.liveData().observe(this) {strings ->
+        mainViewModel.liveData().observe(this) {strings ->
             Log.d("ml", "LiveData observer")
             removeTextViews(binding.contentLayout)
-            strings?.forEach {
-                val textView = TextView(this)
-                textView.freezesText = true
-                textView.text = it
-                binding.contentLayout.addView(textView)
-            }
+            fillParent(strings)
         }
 
 //    override fun onSaveInstanceState(outState: Bundle) {
@@ -46,6 +40,15 @@ class MainActivity : AppCompatActivity() {
 //        arrayList = savedInstanceState.getCharSequenceArrayList(KEY)!!
 //         }
 //    }
+    }
+
+    private fun fillParent(strings: ArrayList<CharSequence>) {
+        strings?.forEach {
+            val textView = TextView(this)
+            textView.freezesText = true
+            textView.text = it
+            binding.contentLayout.addView(textView)
+        }
     }
 
     private fun removeTextViews(layout: LinearLayout){
