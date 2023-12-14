@@ -2,10 +2,9 @@ package ru.easycode.zerotoheroandroidtdd
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import ru.easycode.zerotoheroandroidtdd.databinding.ActivityMainBinding
+import ru.easycode.zerotoheroandroidtdd.databinding.ListItemBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,39 +25,17 @@ class MainActivity : AppCompatActivity() {
 
         mainViewModel.liveData().observe(this) {strings ->
             Log.d("ml", "LiveData observer")
-            removeTextViews(binding.contentLayout)
+            binding.contentLayout.removeAllViews()
             fillParent(strings)
         }
-
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        outState.putCharSequenceArrayList(KEY, arrayList)
-//    }
-//
-//    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-//        super.onRestoreInstanceState(savedInstanceState)
-//        arrayList = savedInstanceState.getCharSequenceArrayList(KEY)!!
-//         }
-//    }
     }
 
     private fun fillParent(strings: ArrayList<CharSequence>) {
-        strings?.forEach {
-            val textView = TextView(this)
-            textView.freezesText = true
+        strings.forEach {
+            val textViewBinding = ListItemBinding.inflate(layoutInflater)
+            val textView = textViewBinding.root
             textView.text = it
             binding.contentLayout.addView(textView)
         }
     }
-
-    private fun removeTextViews(layout: LinearLayout){
-        val elements = layout.childCount
-        Log.d("ml", "children = $elements")
-        layout.removeViews(1, elements-1)
-    }
-
-    companion object {
-        private const val KEY = "key"
-    }
-
 }
