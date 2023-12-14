@@ -1,14 +1,12 @@
 package ru.easycode.zerotoheroandroidtdd
 
 import android.app.Application
-import androidx.lifecycle.MutableLiveData
 
 class App : Application() {
 
-    lateinit var liveData: MutableLiveData<ArrayList<CharSequence>>
+    lateinit var liveData: LiveDataWrapper
     override fun onCreate() {
         super.onCreate()
-        liveData = MutableLiveData()
-        liveData.value = ArrayList()
+        liveData = LiveDataWrapper.Base()
     }
 }

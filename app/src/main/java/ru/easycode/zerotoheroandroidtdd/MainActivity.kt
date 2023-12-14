@@ -1,15 +1,16 @@
 package ru.easycode.zerotoheroandroidtdd
 
 import android.os.Bundle
+import android.util.Log
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.MutableLiveData
 import ru.easycode.zerotoheroandroidtdd.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    lateinit var liveData: MutableLiveData<ArrayList<CharSequence>>
+    private lateinit var liveData: LiveDataWrapper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,17 +20,17 @@ class MainActivity : AppCompatActivity() {
         liveData = (application as App).liveData
 
         binding.actionButton.setOnClickListener {
-            val textView = TextView(this)
             val text = (binding.inputEditText.text).toString()
-            liveData.value!!.add(text)
-            textView.text = text
-            binding.contentLayout.addView(textView)
+            liveData.update(text)
             binding.inputEditText.text?.clear()
         }
 
-        liveData.observe(this) {
-            it.forEach {
+        liveData.liveData().observe(this) {strings ->
+            Log.d("ml", "LiveData observer")
+            removeTextViews(binding.contentLayout)
+            strings?.forEach {
                 val textView = TextView(this)
+                textView.freezesText = true
                 textView.text = it
                 binding.contentLayout.addView(textView)
             }
@@ -45,6 +46,12 @@ class MainActivity : AppCompatActivity() {
 //        arrayList = savedInstanceState.getCharSequenceArrayList(KEY)!!
 //         }
 //    }
+    }
+
+    private fun removeTextViews(layout: LinearLayout){
+        val elements = layout.childCount
+        Log.d("ml", "children = $elements")
+        layout.removeViews(1, elements-1)
     }
 
     companion object {
