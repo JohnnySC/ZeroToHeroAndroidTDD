@@ -1,35 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/rootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="horizontal"
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/decrementButton"
-        android:text="-"
-        android:padding="8dp"
-        android:textSize="24sp"
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:visibility="gone"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <TextView
-        android:id="@+id/countTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="0"
+        android:id="@+id/titleTextView"
         android:textSize="24sp"
-        android:padding="8dp" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/incrementButton"
-        android:text="+"
-        android:textSize="24sp"
-        android:padding="8dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:id="@+id/actionButton"
+        android:text="@string/load"
+        android:layout_width="wrap_content"/>
 
 </LinearLayout>

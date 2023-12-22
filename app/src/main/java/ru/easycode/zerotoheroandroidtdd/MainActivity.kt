@@ -1,57 +1,75 @@
 package ru.easycode.zerotoheroandroidtdd
 
-import android.os.Build
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var textView: TextView
-    private lateinit var incrementButton: Button
-    private lateinit var decrementButton: Button
-    private val count = Count.Base(2, 4, 0)
-    private lateinit var uiState: UiState
+    private lateinit var progressBar: ProgressBar
+    private lateinit var title: TextView
+    private lateinit var actionButton: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        incrementButton = findViewById(R.id.incrementButton)
-        decrementButton = findViewById(R.id.decrementButton)
-        textView = findViewById(R.id.countTextView)
+        progressBar = findViewById(R.id.progressBar)
+        title = findViewById(R.id.titleTextView)
+        actionButton = findViewById(R.id.actionButton)
 
-        if (savedInstanceState == null) {
-            uiState = count.initial(textView.text.toString())
-            uiState.apply(textView, incrementButton, decrementButton)
-        }
+//        actionButton.setOnClickListener {
+//            actionButton.isEnabled = false
+//            progressBar.isVisible = true
+//            actionButton.postDelayed({
+//                progressBar.isVisible = false
+//                actionButton.isEnabled = true
+//                title.text = "hello"
+//            }, 3500)
+//        }
 
-        incrementButton.setOnClickListener {
-            uiState = count.increment(textView.text.toString())
-            uiState.apply(textView, incrementButton, decrementButton)
-        }
+//        actionButton.setOnClickListener {
+//            actionButton.isEnabled = false
+//            progressBar.isVisible = true
+//            Handler(Looper.getMainLooper()).postDelayed({
+//                title.text = "hello"
+//                progressBar.isVisible = false
+//                actionButton.isEnabled = true
+//            }, 3500)
+//        }
 
-        decrementButton.setOnClickListener {
-            uiState = count.decrement(textView.text.toString())
-            uiState.apply(textView, incrementButton, decrementButton)
-        }
-    }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putSerializable(KEY, uiState)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            uiState = savedInstanceState.getSerializable(KEY, UiState::class.java)!!
-            uiState.apply(textView, incrementButton, decrementButton)
+        actionButton.setOnClickListener {
+            loadData()
         }
     }
 
-    companion object {
-        private const val KEY = "initialKey"
+    private fun loadData() {
+        progressBar.isVisible = true
+        actionButton.isEnabled = false
+        startAction {
+            title.text = it
+            progressBar.isVisible = false
+            actionButton.isEnabled = true
+        }
+    }
+
+    private fun startAction(callback: (String) -> Unit) {
+        try {
+            Thread {
+                Handler(Looper.getMainLooper()).postDelayed({
+                    callback.invoke("hello")
+                }, 3500)
+            }.start()
+
+        } catch (e: RuntimeException) {
+            e.printStackTrace()
+        }
     }
 }
