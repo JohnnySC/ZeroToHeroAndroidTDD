@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var title: TextView
     private lateinit var actionButton: Button
 
-    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -73,5 +72,4 @@ class MainActivity : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-
 }
