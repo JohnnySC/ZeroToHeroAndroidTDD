@@ -24,7 +24,6 @@ interface Count {
                 min -> UiState.Min(number)
                 else -> UiState.Base(number)
             }
-        }
 
         override fun increment(number: String): UiState {
             val digits = number.toInt()

@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var decrementButton: Button
     private val count = Count.Base(2, 4, 0)
     private lateinit var uiState: UiState
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
