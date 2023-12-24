@@ -1,33 +1,30 @@
 package ru.easycode.zerotoheroandroidtdd
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import ru.easycode.zerotoheroandroidtdd.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var title: TextView
-    private lateinit var progressBar: ProgressBar
-    private lateinit var actionButton: Button
-
-    private val viewModel = MainViewModel(
-        Repository.Base(), LiveDataWrapper.Base())
-    @SuppressLint("MissingInflatedId")
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        title = findViewById(R.id.titleTextView)
-        progressBar = findViewById(R.id.progressBar)
-        actionButton = findViewById(R.id.actionButton)
+        val viewModel = (application as App).viewModel
 
-        viewModel.liveData().observe(this) {
-                uiState -> uiState.apply(actionButton, progressBar, title)
+        viewModel.liveData().observe(this) { uiState ->
+            uiState.apply(
+                binding.actionButton,
+                binding.titleTextView,
+                binding.progressBar
+            )
         }
+
+        binding.actionButton.setOnClickListener {
 
         actionButton.setOnClickListener {
             viewModel.load()
