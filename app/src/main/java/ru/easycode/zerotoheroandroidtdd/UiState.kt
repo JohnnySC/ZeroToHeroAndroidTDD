@@ -1,5 +1,4 @@
 package ru.easycode.zerotoheroandroidtdd
-
 import android.view.View
 import android.widget.Button
 import android.widget.ProgressBar
@@ -21,6 +20,6 @@ interface UiState {
             button.isEnabled = true
             progressBar.visibility = View.GONE
             textView.visibility = View.VISIBLE
-        }
     }
+}
 }

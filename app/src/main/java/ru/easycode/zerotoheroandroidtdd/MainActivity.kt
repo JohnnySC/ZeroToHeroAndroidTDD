@@ -16,6 +16,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel = MainViewModel(
         Repository.Base(), LiveDataWrapper.Base())
     @SuppressLint("MissingInflatedId")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,7 +32,5 @@ class MainActivity : AppCompatActivity() {
         actionButton.setOnClickListener {
             viewModel.load()
         }
-
-
     }
 }
