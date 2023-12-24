@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         binding.actionButton.setOnClickListener {
+
+        actionButton.setOnClickListener {
             viewModel.load()
         }
     }

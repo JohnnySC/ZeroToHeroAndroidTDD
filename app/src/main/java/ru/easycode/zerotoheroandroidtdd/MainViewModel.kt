@@ -24,6 +24,6 @@ class MainViewModel(
             liveDataWrapper.update(UiState.ShowData)
         }
     }
-
     override fun liveData() = liveDataWrapper.liveData()
+
 }

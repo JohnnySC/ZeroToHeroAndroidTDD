@@ -21,6 +21,7 @@ interface LiveDataWrapper : ProvideLiveData {
     }
 }
 
+
 interface ProvideLiveData {
     fun liveData(): LiveData<UiState>
 }
