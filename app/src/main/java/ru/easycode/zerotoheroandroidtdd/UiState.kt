@@ -1,35 +1,25 @@
 package ru.easycode.zerotoheroandroidtdd
+import android.view.View
 import android.widget.Button
+import android.widget.ProgressBar
 import android.widget.TextView
-import java.io.Serializable
 
-interface UiState : Serializable {
+interface UiState {
 
-    fun apply(textView: TextView, incrementButton: Button, decrementButton: Button)
+    fun apply(button: Button, progressBar: ProgressBar, textView: TextView)
 
-interface UiState: Serializable {
-
-    fun apply(textView: TextView, button: Button)
-
-    data class Base(private val text: String) : UiState {
-        override fun apply(textView: TextView, button: Button) {
-            textView.text = text
+    object ShowProgress : UiState {
+        override fun apply(button: Button, progressBar: ProgressBar, textView: TextView) {
+            button.isEnabled = false
+            progressBar.visibility = View.VISIBLE
+            textView.visibility = View.GONE
         }
     }
-
-    data class Max(private val text: String) : UiState {
-        override fun apply(textView: TextView, incrementButton: Button, decrementButton: Button) {
-            textView.text = text
-            incrementButton.isEnabled = false
-            decrementButton.isEnabled = true
-        }
+    object ShowData : UiState {
+        override fun apply(button: Button, progressBar: ProgressBar, textView: TextView) {
+            button.isEnabled = true
+            progressBar.visibility = View.GONE
+            textView.visibility = View.VISIBLE
     }
-
-    data class Min(private val text: String) : UiState {
-        override fun apply(textView: TextView, incrementButton: Button, decrementButton: Button) {
-            textView.text = text
-            decrementButton.isEnabled = false
-            incrementButton.isEnabled = true
-        }
-    }
+}
 }
