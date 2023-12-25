@@ -33,8 +33,8 @@ class Task005Test {
                 withId(R.id.titleTextView),
                 withText("I am an Android Developer!"),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
-                withParent(withId(R.id.rootLayout))
-            )
+                withParent(withId(R.id.rootLayout)),
+            ),
         ).check(matches(isDisplayed()))
 
         onView(
@@ -43,8 +43,8 @@ class Task005Test {
                 withText("change"),
                 isAssignableFrom(Button::class.java),
                 withParent(isAssignableFrom(LinearLayout::class.java)),
-                withParent(withId(R.id.rootLayout))
-            )
+                withParent(withId(R.id.rootLayout)),
+            ),
         ).check(isCompletelyBelow(withId(R.id.titleTextView)))
     }
 }
