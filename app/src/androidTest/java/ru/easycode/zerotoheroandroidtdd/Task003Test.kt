@@ -28,8 +28,8 @@ class Task003Test {
             allOf(
                 withId(R.id.titleTextView),
                 withText("I am an Android Developer!"),
-                withParent(isAssignableFrom(LinearLayout::class.java))
-            )
+                withParent(isAssignableFrom(LinearLayout::class.java)),
+            ),
         ).check(matches(isDisplayed()))
     }
 }
