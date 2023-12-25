@@ -31,15 +31,15 @@ class Task004Test {
                 isAssignableFrom(TextView::class.java),
                 withId(R.id.titleTextView),
                 withText("I am an Android Developer!"),
-                withParent(isAssignableFrom(LinearLayout::class.java))
-            )
+                withParent(isAssignableFrom(LinearLayout::class.java)),
+            ),
         ).check(matches(isDisplayed()))
 
         onView(
             allOf(
                 isAssignableFrom(Button::class.java),
-                withParent(isAssignableFrom(LinearLayout::class.java))
-            )
+                withParent(isAssignableFrom(LinearLayout::class.java)),
+            ),
         ).check(matches(isDisplayed()))
     }
 }
