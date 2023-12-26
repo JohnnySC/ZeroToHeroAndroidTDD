@@ -29,13 +29,13 @@ import org.junit.runner.RunWith
  * @see ru.easycode.zerotoheroandroidtdd.MainViewModelTest
  */
 @RunWith(AndroidJUnit4::class)
-class Task016Test {
+class Task017Test {
 
     @get:Rule
     var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Test
-    fun test_progress_mvvm_recreate() {
+    fun test_mvvm_process_recreate() {
         onView(
             allOf(
                 withParent(isAssignableFrom(LinearLayout::class.java)),
