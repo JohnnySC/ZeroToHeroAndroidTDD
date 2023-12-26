@@ -1,7 +1,6 @@
 package ru.easycode.zerotoheroandroidtdd
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import ru.easycode.zerotoheroandroidtdd.databinding.ActivityMainBinding
 
