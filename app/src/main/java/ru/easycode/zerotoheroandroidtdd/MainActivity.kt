@@ -27,8 +27,6 @@ class MainActivity : AppCompatActivity() {
         binding.actionButton.setOnClickListener {
             viewModel.load()
         }
-
-        Log.d("kia", "onCreate bundle is null ${savedInstanceState == null}")
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

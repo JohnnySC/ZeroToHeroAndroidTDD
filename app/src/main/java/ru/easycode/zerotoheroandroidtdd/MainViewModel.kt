@@ -13,20 +13,15 @@ class MainViewModel(
     private val liveDataWrapper: LiveDataWrapper
 ) : ViewModel(), ProvideLiveData {
 
-    init {
-        Log.d("kia", "MainViewModel init")
-    }
-
     private val viewModelScope = CoroutineScope(
         SupervisorJob(Job()) +
                 Dispatchers.Main.immediate
     )
-
     fun load() {
         liveDataWrapper.update(UiState.ShowProgress)
         viewModelScope.launch {
-            repository.load()
-            liveDataWrapper.update(UiState.ShowData)
+            val response = repository.load()
+            liveDataWrapper.update(UiState.ShowData(response.text))
         }
     }
     override fun liveData() = liveDataWrapper.liveData()
@@ -34,7 +29,6 @@ class MainViewModel(
     fun save(bundleWrapper: BundleWrapper.Save) {
         liveDataWrapper.save(bundleWrapper)
     }
-
     fun restore(bundleWrapper: BundleWrapper.Restore) {
         val uiState = bundleWrapper.restore()
         liveDataWrapper.update(uiState)
