@@ -9,18 +9,19 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val repository: Repository,
-    private val liveDataWrapper: LiveDataWrapper
-) : ViewModel(), ProvideLiveData {
+    private val liveDataWrapper: LiveDataWrapper.Mutable
+) : LiveDataWrapper.Observe {
 
     private val viewModelScope = CoroutineScope(
         SupervisorJob(Job()) +
                 Dispatchers.Main.immediate
     )
+
     fun load() {
         liveDataWrapper.update(UiState.ShowProgress)
         viewModelScope.launch {
             val response = repository.load()
-            liveDataWrapper.update(UiState.ShowData(response.text))
+            response.show(liveDataWrapper)
         }
     }
     override fun liveData() = liveDataWrapper.liveData()
@@ -28,6 +29,7 @@ class MainViewModel(
     fun save(bundleWrapper: BundleWrapper.Save) {
         liveDataWrapper.save(bundleWrapper)
     }
+
     fun restore(bundleWrapper: BundleWrapper.Restore) {
         val uiState = bundleWrapper.restore()
         liveDataWrapper.update(uiState)

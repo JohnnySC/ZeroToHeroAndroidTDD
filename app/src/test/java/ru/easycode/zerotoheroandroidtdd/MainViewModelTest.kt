@@ -1,6 +1,5 @@
 package ru.easycode.zerotoheroandroidtdd
 
-import androidx.lifecycle.LiveData
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -13,11 +12,6 @@ import org.junit.Test
 
 /**
  * Please also check out the ui test
- * @see ru.easycode.zerotoheroandroidtdd.Task018Test
- *
- * And other unit tests
- * @see RepositoryTest
- * @see ServiceTest
  * @see ru.easycode.zerotoheroandroidtdd.Task019Test
  *
  * And other unit tests
@@ -91,35 +85,6 @@ private interface FakeBundleWrapper : BundleWrapper.Mutable {
     }
 }
 
-private interface FakeLiveDataWrapper : LiveDataWrapper {
-
-    fun checkUpdateCalls(expected: List<UiState>)
-
-    class Base : FakeLiveDataWrapper {
-
-        private val actualCallsList = mutableListOf<UiState>()
-
-        override fun checkUpdateCalls(expected: List<UiState>) {
-            assertEquals(expected, actualCallsList)
-        }
-
-        override fun save(bundleWrapper: BundleWrapper.Save) {
-            bundleWrapper.save(actualCallsList.last())
-        }
-
-        override fun update(value: UiState) {
-            actualCallsList.add(value)
-        }
-
-        override fun liveData(): LiveData<UiState> {
-            throw IllegalStateException("not used in test")
-        }
-    }
-}
-
-private interface FakeRepository : Repository {
-
-    fun expectResponse(simpleResponse: SimpleResponse)
 private interface FakeRepository : Repository {
 
     fun expectResult(result: LoadResult)
@@ -128,7 +93,7 @@ private interface FakeRepository : Repository {
 
     class Base : FakeRepository {
 
-        private lateinit var response: SimpleResponse
+        private lateinit var result: LoadResult
 
         override fun expectResult(result: LoadResult) {
             this.result = result
@@ -140,8 +105,9 @@ private interface FakeRepository : Repository {
             assertEquals(times, actualCalledTimes)
         }
 
-        override suspend fun load(): SimpleResponse {
+        override suspend fun load(): LoadResult {
             actualCalledTimes++
-            return response
+            return result
+        }
     }
 }
