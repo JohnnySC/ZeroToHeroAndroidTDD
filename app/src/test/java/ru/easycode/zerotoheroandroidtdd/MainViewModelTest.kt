@@ -18,6 +18,9 @@ import org.junit.Test
  * And other unit tests
  * @see RepositoryTest
  * @see ServiceTest
+ * @see ru.easycode.zerotoheroandroidtdd.Task019Test
+ *
+ * And other unit tests
  */
 class MainViewModelTest {
 
@@ -49,7 +52,7 @@ class MainViewModelTest {
 
     @Test
     fun test() {
-        repository.expectResponse(SimpleResponse(text = "testingText"))
+        repository.expectResult(LoadResult.Success(SimpleResponse(text = "testingText")))
 
         viewModel.load()
         liveDataWrapper.checkUpdateCalls(
@@ -117,6 +120,9 @@ private interface FakeLiveDataWrapper : LiveDataWrapper {
 private interface FakeRepository : Repository {
 
     fun expectResponse(simpleResponse: SimpleResponse)
+private interface FakeRepository : Repository {
+
+    fun expectResult(result: LoadResult)
 
     fun checkLoadCalledTimes(times: Int)
 
@@ -124,8 +130,8 @@ private interface FakeRepository : Repository {
 
         private lateinit var response: SimpleResponse
 
-        override fun expectResponse(simpleResponse: SimpleResponse) {
-            response = simpleResponse
+        override fun expectResult(result: LoadResult) {
+            this.result = result
         }
 
         private var actualCalledTimes: Int = 0
@@ -137,6 +143,5 @@ private interface FakeRepository : Repository {
         override suspend fun load(): SimpleResponse {
             actualCalledTimes++
             return response
-        }
     }
 }
