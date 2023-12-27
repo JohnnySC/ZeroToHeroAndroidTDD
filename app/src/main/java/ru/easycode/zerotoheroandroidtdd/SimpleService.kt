@@ -7,11 +7,9 @@ import retrofit2.http.Url
 
 interface SimpleService {
 
-//    @GET("{fullUrl}")
-//    suspend fun fetch(@Path(value = "fullUrl", encoded = true) url: String): SimpleResponse
+    @GET("{fullUrl}")
+    suspend fun fetch(@Path(value = "fullUrl", encoded = true) url: String): SimpleResponse
 
-    @GET
-    suspend fun fetch(@Url url: String): SimpleResponse
 
 }
 
