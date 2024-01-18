@@ -65,6 +65,7 @@ private interface FakeLiveDataWrapper : LiveDataWrapper {
     }
 }
 
+
 private interface FakeRepository : Repository {
 
     fun checkLoadCalledTimes(times: Int)
