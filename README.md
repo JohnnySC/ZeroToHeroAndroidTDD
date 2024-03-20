@@ -66,3 +66,7 @@ task/027-room-delete solution on YouTube https://youtu.be/eecz8Xy6xj0
 task/028-room-crud solution on YouTube https://youtu.be/EBE2ZWybj34
 
 task/029-room-one-to-many solution on YouTube https://youtu.be/HM8Oqx73vhE
+
+<b>Season 3: Jetpack Compose!</b>
+
+task/030-compose-hello-world soluton on YouTube SOON!
