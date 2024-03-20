@@ -1,10 +1,6 @@
 package ru.easycode.zerotoheroandroidtdd
 
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.assertion.ViewAssertions.matches
-import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
-import androidx.test.espresso.matcher.ViewMatchers.withText
-import androidx.test.ext.junit.rules.ActivityScenarioRule
+import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.*
 import org.junit.Rule
@@ -15,10 +11,10 @@ import org.junit.runner.RunWith
 class InitialUiTest {
 
     @get:Rule
-    var activityScenarioRule = ActivityScenarioRule(MainActivity::class.java)
+    val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
-    fun test_hello_world() {
-        onView(withText("Hello World!")).check(matches(isDisplayed()))
+    fun test() {
+        //todo
     }
 }
