@@ -5,11 +5,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import ru.easycode.zerotoheroandroidtdd.data.Repository
 
 class MainViewModel(
-    private val liveDataWrapper: LiveDataWrapper,
+    private val liveDataWrapper: LiveDataWrapper.Mutable,
     private val repository: Repository
 ) {
 
@@ -23,9 +22,7 @@ class MainViewModel(
         liveDataWrapper.update(UiState.ShowProgress)
         viewModelScoupe.launch {
             val response = repository.load()
-            withContext(Dispatchers.Main) {
-                liveDataWrapper.update(UiState.ShowData(response.text))
-            }
+            response.show(liveDataWrapper)
         }
     }
 

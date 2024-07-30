@@ -4,11 +4,19 @@ import androidx.lifecycle.LiveData
 
 interface LiveDataWrapper {
 
-    fun save(bundleWrapper: BundleWrapper.Save)
-    fun update(value: UiState)
+    interface Update : LiveDataWrapper {
+        fun update(value: UiState)
+    }
+
+    interface Save : LiveDataWrapper {
+        fun save(bundleWrapper: BundleWrapper.Save)
+    }
+
+    interface Mutable : Update, Save
+
     fun liveData(): LiveData<UiState>
 
-    class Base : LiveDataWrapper {
+    class Base : Mutable {
 
         private val liveData = SingleLiveEvent<UiState>()
 
