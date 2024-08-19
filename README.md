@@ -73,4 +73,5 @@ task/030-compose-hello-world solution on YouTube https://youtu.be/f3UEaWtm0-8
 
 task/031-click-me solution on YouTube https://youtu.be/9m24QykUqYc
 
-task/032-change-text solution on YouTube SOON
+task/032-change-text solution on YouTube https://youtu.be/uFava_dwLgA
+
