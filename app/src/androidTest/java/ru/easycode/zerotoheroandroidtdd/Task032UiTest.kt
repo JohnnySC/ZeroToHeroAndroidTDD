@@ -16,7 +16,7 @@ class Task032UiTest {
     val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
-    fun test_change_text() = with(composeTestRule) {
+    fun test_change_text(): Unit = with(composeTestRule) {
         onNodeWithText("That's right!").assertDoesNotExist()
         onNodeWithText("Click me!").assertHasClickAction()
 
