@@ -10,6 +10,10 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
+/**
+ * Please also take a look at the unit test
+ * @see [ru.easycode.zerotoheroandroidtdd.CountTest]
+ */
 @RunWith(AndroidJUnit4::class)
 class Task034UiTest {
 
