@@ -75,5 +75,6 @@ task/031-click-me solution on YouTube https://youtu.be/9m24QykUqYc
 
 task/032-change-text solution on YouTube https://youtu.be/uFava_dwLgA
 
-task/033-change-text-recreated solution on YouTube SOON
+task/033-change-text-recreated solution on YouTube https://youtu.be/70yXZ0EZREc
+
 
