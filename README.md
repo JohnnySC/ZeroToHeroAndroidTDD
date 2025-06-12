@@ -79,4 +79,4 @@ task/033-change-text-recreated solution on YouTube https://youtu.be/70yXZ0EZREc
 
 task/034-increment solution on YouTube https://youtu.be/5-tOMITcnSY
 
-task/035-min-and-max soluton on YouTube Soon!
+task/035-min-and-max soluton on YouTube https://youtu.be/zHCD0_uYNFg
