@@ -3,6 +3,7 @@ package ru.easycode.zerotoheroandroidtdd
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsEnabled
 import androidx.compose.ui.test.assertIsNotEnabled
+import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -23,6 +24,7 @@ class Task38UiTest {
         val input = onNodeWithTag("emailInputTag")
         val button = onNodeWithTag("loginButtonTag")
 
+        button.assertTextEquals("login")
         button.assertIsNotEnabled()
         input.assert(hasText(""))
 
@@ -39,6 +41,9 @@ class Task38UiTest {
         button.assertIsNotEnabled()
 
         input.performTextInput("com")
+        input.assert(hasText("example@gmail.com"))
+        button.assertIsEnabled()
+        activityRule.scenario.recreate()
         input.assert(hasText("example@gmail.com"))
         button.assertIsEnabled()
     }
