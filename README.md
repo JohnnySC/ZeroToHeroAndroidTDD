@@ -85,3 +85,4 @@ task/036-remove-ui solution on YouTube https://youtu.be/h9LDhQXIR48
 
 task/037-background-color-changes solution on YouTube https://youtu.be/UpIRbGFV4Hs
 
+task/038-email-validation solution on YouTube https://youtu.be/YYu_PYmp0eo
