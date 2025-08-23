@@ -39,5 +39,10 @@ class Task039UiTest {
         progress.assertDoesNotExist()
         loadButton.assertDoesNotExist()
         resultText.assertTextEquals("Success!").assertIsDisplayed()
+
+        activityRule.scenario.recreate()
+        progress.assertDoesNotExist()
+        loadButton.assertDoesNotExist()
+        resultText.assertTextEquals("Success!").assertIsDisplayed()
     }
 }
