@@ -89,4 +89,5 @@ task/038-email-validation solution on YouTube https://youtu.be/YYu_PYmp0eo
 
 task/039-progress solution on YouTube https://www.youtube.com/watch?v=7QU3Eub9oSg
 
-task/040-progress-mvvm-process-death-handled solution on YouTube soon
+task/040-progress-mvvm-process-death-handled solution on YouTube https://youtu.be/_edrq52kUvg
+
