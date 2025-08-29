@@ -78,6 +78,13 @@ class Task041UiTest {
         progress.assertDoesNotExist()
         result.assertTextEquals("Fake Data")
         noInternet.assertDoesNotExist()
+
+        fakeConnection.changeConnected(false)
+
+        loadButton.assertDoesNotExist()
+        progress.assertDoesNotExist()
+        result.assertTextEquals("Fake Data")
+        noInternet.assertDoesNotExist()
     }
 }
 
