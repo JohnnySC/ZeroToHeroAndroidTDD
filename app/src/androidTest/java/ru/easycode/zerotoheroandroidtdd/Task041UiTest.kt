@@ -7,6 +7,7 @@ import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
+import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -37,7 +38,8 @@ class Task041UiTest {
         viewModel = MainViewModel(
             runAsync = fakeRunAsync,
             repository = fakeRepository,
-            connection = fakeConnection
+            connection = fakeConnection,
+            savedStateHandle = SavedStateHandle()
         )
     }
 
