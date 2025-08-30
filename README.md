@@ -92,6 +92,5 @@ task/039-progress solution on YouTube https://www.youtube.com/watch?v=7QU3Eub9oS
 task/040-progress-mvvm-process-death-handled solution on YouTube https://youtu.be/_edrq52kUvg
 
 task/041-connection-changes 
-task/041-connection-changes-improved solution on YouTube soon
-
+task/041-connection-changes-improved solution on YouTube https://youtu.be/iyQrCHULR2U
 
