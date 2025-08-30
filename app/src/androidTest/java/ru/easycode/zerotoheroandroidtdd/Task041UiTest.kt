@@ -10,6 +10,7 @@ import androidx.compose.ui.test.performClick
 import androidx.lifecycle.SavedStateHandle
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.runBlocking
@@ -55,12 +56,14 @@ class Task041UiTest {
         val progress = onNodeWithTag("progress")
         val result = onNodeWithTag("result")
 
+        fakeRunAsync.returnFlowResult(false)
+
         loadButton.assertIsNotEnabled()
         result.assertDoesNotExist()
         progress.assertDoesNotExist()
         noInternet.assertIsDisplayed()
 
-        fakeConnection.changeConnected(true)
+        fakeRunAsync.returnFlowResult(true)
 
         loadButton.assertIsEnabled()
         result.assertDoesNotExist()
@@ -81,7 +84,7 @@ class Task041UiTest {
         result.assertTextEquals("Fake Data")
         noInternet.assertDoesNotExist()
 
-        fakeConnection.changeConnected(false)
+        fakeRunAsync.returnFlowResult(false)
 
         loadButton.assertDoesNotExist()
         progress.assertDoesNotExist()
@@ -94,10 +97,6 @@ private class FakeConnection : MonitorConnection {
     private val mutableStateFlow = MutableStateFlow(false)
 
     override fun connectedFlow(): StateFlow<Boolean> = mutableStateFlow
-
-    fun changeConnected(connected: Boolean) {
-        mutableStateFlow.value = connected
-    }
 }
 
 @Suppress("UNCHECKED_CAST")
@@ -120,6 +119,21 @@ private class FakeRunAsync : RunAsync {
 
     fun returnResult() {
         uiCached.invoke(resultCached)
+    }
+
+
+    private lateinit var onEachCached: (Any) -> Unit
+
+    override fun <T : Any> runFlow(
+        scope: CoroutineScope,
+        flow: Flow<T>,
+        onEach: (T) -> Unit
+    ) {
+        onEachCached = onEach as (Any) -> Unit
+    }
+
+    fun returnFlowResult(connected: Boolean) {
+        onEachCached.invoke(connected)
     }
 }
 
