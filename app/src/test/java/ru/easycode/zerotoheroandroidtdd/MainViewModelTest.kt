@@ -10,9 +10,6 @@ import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
-/**
- * The same as in Task040 ViewModelTest
- */
 class MainViewModelTest {
 
     private lateinit var fakeRepository: FakeRepository
