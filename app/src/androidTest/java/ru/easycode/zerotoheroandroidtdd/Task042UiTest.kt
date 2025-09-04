@@ -8,6 +8,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
 import androidx.compose.ui.test.performTextReplacement
+import androidx.test.espresso.Espresso
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Rule
 import org.junit.Test
@@ -26,22 +27,21 @@ class Task042UiTest {
     fun test(): Unit = with(composeTestRule) {
         val textField = onNodeWithTag("textField")
         val addButton = onNodeWithTag("addButton")
-
-        textField.performTextReplacement("text number one")
-        addButton.performClick()
-        textField.assertTextEquals("")
-        assertTextAtPosition(0, "text number one")
-
-        textField.performTextReplacement("text number two")
-        addButton.performClick()
-        textField.assertTextEquals("")
-        assertTextAtPosition(0, "text number two")
-        assertTextAtPosition(1, "text number one")
+        val times = 100
+        repeat(times) { index ->
+            textField.performTextReplacement("text number $index")
+            addButton.performClick()
+            textField.assertTextEquals("")
+            assertTextAtPosition(0, "text number $index")
+        }
 
         activityRule.scenario.recreate()
 
-        assertTextAtPosition(0, "text number two")
-        assertTextAtPosition(1, "text number one")
+        Espresso.closeSoftKeyboard()
+
+        repeat(times) { index ->
+            assertTextAtPosition(times - 1 - index, "text number $index")
+        }
     }
 
     private fun assertTextAtPosition(position: Int, text: String) = with(composeTestRule) {
