@@ -96,5 +96,5 @@ task/041-connection-changes-improved solution on YouTube https://youtu.be/iyQrCH
 
 task/042-add-to-list solution on YouTube https://youtu.be/MT-AIhR8Nb4
 
-task/043-add-list-room solution on YouTube soon
+task/043-add-list-room solution on YouTube https://www.youtube.com/watch?v=EIqNBiS7CSU
 
