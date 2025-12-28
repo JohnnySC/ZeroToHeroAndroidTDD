@@ -14,7 +14,7 @@ class Task044UiTest {
 
     @Test
     fun order_and_filter() {
-        val productsPage = ProductsPage()
+        val productsPage = ProductsPage(composeTestRule)
         productsPage.assertProducts(
             listOf(
                 ProductUi(name = "Device A", price = "300$", os = "Android", ram = 6),
@@ -24,7 +24,7 @@ class Task044UiTest {
             )
         )
         productsPage.openOrderSettings()
-        val orderSettingsPage = OrderSettingsPage()
+        val orderSettingsPage = OrderSettingsPage(composeTestRule)
         orderSettingsPage.assertChosen("alphabet")
 
         orderSettingsPage.choose("price: low to high")
@@ -53,10 +53,11 @@ class Task044UiTest {
 
         productsPage.openFilterSettings()
 
-        val filterSettingsPage = FilterSettingsPage()
+        val filterSettingsPage = FilterSettingsPage(composeTestRule)
         filterSettingsPage.assertNothingChosen()
 
         filterSettingsPage.choose("os" to "Android")
+        filterSettingsPage.save()
 
         productsPage.assertProducts(
             listOf(
@@ -68,6 +69,7 @@ class Task044UiTest {
         productsPage.openFilterSettings()
         filterSettingsPage.assertChosen("os" to "Android")
         filterSettingsPage.choose("RAM" to 4)
+        filterSettingsPage.save()
 
         productsPage.assertProducts(
             listOf(
@@ -80,6 +82,7 @@ class Task044UiTest {
         filterSettingsPage.assertChosen("RAM" to 4)
 
         filterSettingsPage.choose("RAM" to 8)
+        filterSettingsPage.save()
 
         productsPage.assertNothingFound()
 
@@ -88,6 +91,8 @@ class Task044UiTest {
         filterSettingsPage.assertChosen("RAM" to 8)
 
         filterSettingsPage.choose("os" to "iOS")
+        filterSettingsPage.save()
+
         productsPage.assertProducts(
             listOf(
                 ProductUi(name = "Device D", price = "500$", os = "iOS", ram = 8),
@@ -98,7 +103,8 @@ class Task044UiTest {
         filterSettingsPage.assertChosen("os" to "iOS")
         filterSettingsPage.assertChosen("RAM" to 8)
 
-        filterSettingsPage.unchoose("RAM")
+        filterSettingsPage.unchoose("RAM" to 8)
+        filterSettingsPage.save()
 
         productsPage.assertProducts(
             listOf(
