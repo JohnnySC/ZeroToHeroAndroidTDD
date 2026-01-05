@@ -5,7 +5,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import org.junit.Assert.*
+import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
@@ -31,11 +31,23 @@ class ProductsViewModelTest {
     @Test
     fun scenario() {
         assertEquals(
-            listOf<ProductUi>(
-                ProductUi.Base(id = 1, name = "Device A", price = "300$", os = "Android", ram = 6),
-                ProductUi.Base(id = 3, name = "Device B", price = "400$", os = "iOS", ram = 6),
-                ProductUi.Base(id = 2, name = "Device C", price = "200$", os = "Android", ram = 4),
-                ProductUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8)
+            listOf<ProductListUi>(
+                ProductListUi.Base(
+                    id = 1,
+                    name = "Device A",
+                    price = "300$",
+                    os = "Android",
+                    ram = 6
+                ),
+                ProductListUi.Base(id = 3, name = "Device B", price = "400$", os = "iOS", ram = 6),
+                ProductListUi.Base(
+                    id = 2,
+                    name = "Device C",
+                    price = "200$",
+                    os = "Android",
+                    ram = 4
+                ),
+                ProductListUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8)
             ),
             viewModel.productsUiListStateFlow.value
         )
@@ -60,11 +72,23 @@ class ProductsViewModelTest {
         )
 
         assertEquals(
-            listOf<ProductUi>(
-                ProductUi.Base(id = 2, name = "Device C", price = "200$", os = "Android", ram = 4),
-                ProductUi.Base(id = 1, name = "Device A", price = "300$", os = "Android", ram = 6),
-                ProductUi.Base(id = 3, name = "Device B", price = "400$", os = "iOS", ram = 6),
-                ProductUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8)
+            listOf<ProductListUi>(
+                ProductListUi.Base(
+                    id = 2,
+                    name = "Device C",
+                    price = "200$",
+                    os = "Android",
+                    ram = 4
+                ),
+                ProductListUi.Base(
+                    id = 1,
+                    name = "Device A",
+                    price = "300$",
+                    os = "Android",
+                    ram = 6
+                ),
+                ProductListUi.Base(id = 3, name = "Device B", price = "400$", os = "iOS", ram = 6),
+                ProductListUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8)
             ),
             viewModel.productsUiListStateFlow.value
         )
@@ -81,11 +105,23 @@ class ProductsViewModelTest {
         )
 
         assertEquals(
-            listOf<ProductUi>(
-                ProductUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8),
-                ProductUi.Base(id = 3, name = "Device B", price = "400$", os = "iOS", ram = 6),
-                ProductUi.Base(id = 1, name = "Device A", price = "300$", os = "Android", ram = 6),
-                ProductUi.Base(id = 2, name = "Device C", price = "200$", os = "Android", ram = 4),
+            listOf<ProductListUi>(
+                ProductListUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8),
+                ProductListUi.Base(id = 3, name = "Device B", price = "400$", os = "iOS", ram = 6),
+                ProductListUi.Base(
+                    id = 1,
+                    name = "Device A",
+                    price = "300$",
+                    os = "Android",
+                    ram = 6
+                ),
+                ProductListUi.Base(
+                    id = 2,
+                    name = "Device C",
+                    price = "200$",
+                    os = "Android",
+                    ram = 4
+                ),
             ),
             viewModel.productsUiListStateFlow.value
         )
@@ -104,9 +140,21 @@ class ProductsViewModelTest {
         viewModel.chooseFilter(id = 1)
 
         assertEquals(
-            listOf<ProductUi>(
-                ProductUi.Base(id = 1, name = "Device A", price = "300$", os = "Android", ram = 6),
-                ProductUi.Base(id = 2, name = "Device C", price = "200$", os = "Android", ram = 4),
+            listOf<ProductListUi>(
+                ProductListUi.Base(
+                    id = 1,
+                    name = "Device A",
+                    price = "300$",
+                    os = "Android",
+                    ram = 6
+                ),
+                ProductListUi.Base(
+                    id = 2,
+                    name = "Device C",
+                    price = "200$",
+                    os = "Android",
+                    ram = 4
+                ),
             ),
             viewModel.productsUiListStateFlow.value
         )
@@ -125,8 +173,14 @@ class ProductsViewModelTest {
         viewModel.chooseFilter(id = 3)
 
         assertEquals(
-            listOf<ProductUi>(
-                ProductUi.Base(id = 2, name = "Device C", price = "200$", os = "Android", ram = 4),
+            listOf<ProductListUi>(
+                ProductListUi.Base(
+                    id = 2,
+                    name = "Device C",
+                    price = "200$",
+                    os = "Android",
+                    ram = 4
+                ),
             ),
             viewModel.productsUiListStateFlow.value
         )
@@ -145,8 +199,8 @@ class ProductsViewModelTest {
         viewModel.chooseFilter(id = 5)
 
         assertEquals(
-            listOf<ProductUi>(
-                ProductUi.Empty
+            listOf<ProductListUi>(
+                ProductListUi.Empty
             ),
             viewModel.productsUiListStateFlow.value
         )
@@ -165,8 +219,8 @@ class ProductsViewModelTest {
         viewModel.chooseFilter(id = 2)
 
         assertEquals(
-            listOf<ProductUi>(
-                ProductUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8)
+            listOf<ProductListUi>(
+                ProductListUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8)
             ),
             viewModel.productsUiListStateFlow.value
         )
@@ -196,9 +250,9 @@ class ProductsViewModelTest {
         )
 
         assertEquals(
-            listOf<ProductUi>(
-                ProductUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8),
-                ProductUi.Base(id = 3, name = "Device B", price = "400$", os = "iOS", ram = 6)
+            listOf<ProductListUi>(
+                ProductListUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8),
+                ProductListUi.Base(id = 3, name = "Device B", price = "400$", os = "iOS", ram = 6)
             ),
             viewModel.productsUiListStateFlow.value
         )
@@ -215,9 +269,9 @@ class ProductsViewModelTest {
         viewModel.chooseOrder(name = "alphabet")
 
         assertEquals(
-            listOf<ProductUi>(
-                ProductUi.Base(id = 3, name = "Device B", price = "400$", os = "iOS", ram = 6),
-                ProductUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8),
+            listOf<ProductListUi>(
+                ProductListUi.Base(id = 3, name = "Device B", price = "400$", os = "iOS", ram = 6),
+                ProductListUi.Base(id = 4, name = "Device D", price = "500$", os = "iOS", ram = 8),
             ),
             viewModel.productsUiListStateFlow.value
         )

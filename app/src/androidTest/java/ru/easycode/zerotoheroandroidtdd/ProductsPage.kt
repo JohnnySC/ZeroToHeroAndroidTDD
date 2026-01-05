@@ -6,6 +6,8 @@ import androidx.compose.ui.test.hasClickAction
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.ComposeTestRule
+import androidx.compose.ui.test.onAllNodesWithTag
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performScrollToNode
@@ -55,7 +57,8 @@ class ProductsPage(private val composeTestRule: ComposeTestRule) : AssertText {
                 .performScrollToNode(hasTestTag("Product at $position"))
                 .assertIsDisplayed()
 
-            onNodeWithTag("Product $tag at $position", useUnmergedTree = true)
+            onAllNodesWithTag("Product $tag at $position", useUnmergedTree = true)
+                .onFirst()
                 .assertTextEquals(text)
         }
 }
